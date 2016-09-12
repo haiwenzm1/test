@@ -1,23 +1,24 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="cn">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{$meta_title}</title>
-    <link href="__PUBLIC__/Framework/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__PUBLIC__/Stylesheet/Public/style.css" rel="stylesheet">
-    <block name="style"></block>
-    <script src="__PUBLIC__/Javascript/Public/jquery-1.10.2.min.js"></script>
-    <script src="__PUBLIC__/Framework/Bootstrap/js/bootstrap.min.js"></script>
+    <title><?php echo ($meta_title); ?></title>
+    <link href="/Public/Framework/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Public/Stylesheet/Public/style.css" rel="stylesheet">
+    
+
+    <script src="/Public/Javascript/Public/jquery-1.10.2.min.js"></script>
+    <script src="/Public/Framework/Bootstrap/js/bootstrap.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="__PUBLIC__/Javascript/Public/common.js"></script>
+    <script src="/Public/Javascript/Public/common.js"></script>
 </head>
 
 <body>
@@ -87,12 +88,54 @@
                 </div>
             </div>
             <div class="col-lg-10 right-wrap">
-                <block name="body"></block>
+                
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">增加权限组</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label>权限组名</label>
+                    <input type="text" name="groupname" placeholder="权限组名" autocomplete="off">
+                </div>
+                <button class="btn ajax-post confirm" target-url="<?php echo U('add');?>" target-form="form-horizontal">增加</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </form>
+        </div>
+    </div>
+
             </div>
         </div>
     </div>
 
-    <block name="script"></block>
+    
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('click', '.ajax-post', function() {
+                var _this = this;
+                if ($(_this).hasClass('confirm')) {
+                    if (!confirm('确认要执行该操作吗?')) {
+                        return false;
+
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: $(_this).attr('target-url'),
+                        dataType: "json",
+                        data: $('.' + $(_this).attr('target-form')).serialize(),
+                        success: function(data) {
+                            if (data.status == 1) {
+                                alert(data.info);
+                            }
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    </script>
+
 </body>
 
 </html>

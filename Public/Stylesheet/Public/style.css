@@ -1,2 +1,7 @@
-  --md-background-color: rgb(236, 239, 241);
-  --md-toolbar-color: rgb(52, 73, 94);
+  body {
+      background-color: rgb(236, 239, 241);
+  }
+  
+  .navbar {
+      background-color: rgb(52, 73, 94);
+  }

@@ -17,6 +17,5 @@ return array(
         '__JS__'     => __ROOT__ . '/Public/Javascript/' . MODULE_NAME
     ),
 
-    'SHOW_PAGE_TRACE' => false,
-	'DATA_CACHE_TIME' => 1
+    'SHOW_PAGE_TRACE' => false
 );
