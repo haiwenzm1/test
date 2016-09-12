@@ -1,0 +1,43 @@
+<extend name="Public/base" />
+
+<block name="style">
+</block>
+
+<block name="body">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label>权限组名</label>
+            <input type="text" name="groupname" placeholder="权限组名" autocomplete="off">
+        </div>
+        <button class="btn ajax-post confirm" target-url="{:U('add')}" target-form="form-horizontal">增加</button>
+        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function() {
+			$(document).on('click','.ajax-post',function(){
+				var _this = this;
+				if ( $(_this).hasClass('confirm') ) {
+					if(!confirm('确认要执行该操作吗?')){
+						return false;
+						
+					}
+					$.ajax({
+						type: "post",
+						url: $(_this).attr('target-url'),
+						dataType: "json",
+						data: $('.'+$(_this).attr('target-form')).serialize(),
+						success: function (data) {
+							if(data.status == 1){
+								alert(data.info);
+							}
+						}
+					});
+				}
+				return false;
+			});
+        });
+    </script>
+</block>
