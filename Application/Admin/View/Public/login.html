@@ -1,90 +1,82 @@
-<html lang="cn">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>后台管理系统</title>
-    <link href="__PUBLIC__/Framework/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__CSS__/login.css" rel="stylesheet">
-    <script src="__PUBLIC__/Javascript/Public/jquery-1.10.2.min.js"></script>
-    <script src="__PUBLIC__/Framework/Bootstrap/js/bootstrap.min.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Login</title>
+    <link href="/Public/AdminEx/css/style.css" rel="stylesheet">
+    <link href="/Public/AdminEx/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="/Public/AdminEx/js/html5shiv.js"></script>
+    <script src="/Public/AdminEx/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
-<body id="login">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 login">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">后台管理系统</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" name="username" placeholder="用户名" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
+<body class="login-body">
 
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
-                                        <input type="password" class="form-control" name="passwd" placeholder="密码" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
+<div class="container">
 
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" name="vertifycode" placeholder="验证码" autocomplete="off">
-                                        <div class="input-group-addon reloadverify">换一张</div>
-                                    </div>
-                                </div>
-                            </div>
+    <form class="form-signin" action="index.html">
+        <div class="form-signin-heading text-center">
+            <h1 class="sign-title">信息管理系统</h1>
+            <img src="/Public/AdminEx/images/login-logo.png" alt=""/>
+        </div>
+        <div class="login-wrap">
+            <input type="text" class="form-control" placeholder="用户名" autofocus>
+			
+            <input type="password" class="form-control" placeholder="密码">
 
-                            <div class="form-group">
-                                <img class="verifyimg reloadverify col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="点击切换" src="/index.php?s=/Admin/Index/verify.html"
-                                    title="点击切换">
-                            </div>
+            <button class="btn btn-lg btn-login btn-block" type="submit">
+                <i class="fa fa-check"></i>登录
+            </button>
 
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <button type="submit" class="btn btn-default btn-block">登录</button>
-                                </div>
-                            </div>
-                        </form>
+            <div class="registration">
+                Not a member yet?
+                <a class="" href="registration.html">
+                    Signup
+                </a>
+            </div>
+			
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> Remember me
+                <span class="pull-right">
+                    <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+                </span>
+            </label>
+        </div>
+
+        <!-- Modal -->
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Forgot Password ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Enter your e-mail address below to reset your password.</p>
+                        <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="button">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        $(function() {
-            //初始化选中用户名输入框
-            $(".form-horizontal").find("input[name=username]").focus();
- 
-            //刷新验证码
-            var verifyimg = $(".verifyimg").attr("src");
-            $(".reloadverify").click(function() {
-                if (verifyimg.indexOf('?') > 0) {
-                    $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
-                } else {
-                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
-                }
-            });
-        });
-    </script>
-</body>
+        <!-- modal -->
 
+    </form>
+
+</div>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/Public/AdminEx/js/jquery-1.10.2.min.js"></script>
+<script src="/Public/AdminEx/js/bootstrap.min.js"></script>
+<script src="/Public/AdminEx/js/modernizr.min.js"></script>
+
+</body>
 </html>

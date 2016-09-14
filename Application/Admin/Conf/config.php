@@ -9,13 +9,6 @@ return array(
     'DB_PWD'                =>  '123456',          // 密码
     'DB_PORT'               =>  '',        // 端口
     'DB_PREFIX'             =>  'ec_',    // 数据库表前缀
-
-    /* 模板相关配置 */
-    'TMPL_PARSE_STRING' => array(
-        '__IMG__'    => __ROOT__ . '/Public/Images/' . MODULE_NAME,
-        '__CSS__'    => __ROOT__ . '/Public/Stylesheet/' . MODULE_NAME,
-        '__JS__'     => __ROOT__ . '/Public/Javascript/' . MODULE_NAME
-    ),
-
+	
     'SHOW_PAGE_TRACE' => false
 );

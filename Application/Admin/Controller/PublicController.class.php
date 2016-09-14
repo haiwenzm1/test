@@ -9,7 +9,7 @@ class PublicController extends Controller {
     
     public function login(){
         if(IS_POST){
-            
+          
         }else{
             $this->meta_title = '后台管理系统';
             $this->display();
