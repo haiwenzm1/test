@@ -14,6 +14,7 @@
 
 	
 
+
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="/Public/AdminEx/js/html5shiv.js"></script>
@@ -386,24 +387,7 @@
 			<!--body wrapper start-->
 			<div class="wrapper">
 				
-    <div class="row">
-        <div class="col-lg-12">
-            <section class="panel">
-                <header class="panel-heading">
-                    增加权限组
-                </header>
-                <div class="panel-body">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label class="sr-only">Email address</label>
-                            <input type="groupname" class="form-control" placeholder="权限组名">
-                        </div>
-                        <button class="btn btn-primary ajax-post confirm" target-url="<?php echo U('add');?>" target-form="form-inline">增加</button>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </div>
+    1
 
 			</div>
 			<!--body wrapper end-->
@@ -433,27 +417,7 @@
 	
     <script type="text/javascript">
         $(function() {
-            $(document).on('click', '.ajax-post', function() {
-                var _this = this;
-                if ($(_this).hasClass('confirm')) {
-                    if (!confirm('确认要执行该操作吗?')) {
-                        return false;
-                    }
-                    $.ajax({
-                        type: "post",
-                        url: $(_this).attr('target-url'),
-                        dataType: "json",
-                        data: $('.' + $(_this).attr('target-form')).serialize(),
-                        success: function(data) {
-                            alert(data.info);
-                            if (data.status == 1) {
 
-                            }
-                        }
-                    });
-                }
-                return false;
-            });
         });
     </script>
 

@@ -8,25 +8,18 @@
 
 <block name="body">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <section class="panel">
+                <header class="panel-heading">
+                    增加权限组
+                </header>
                 <div class="panel-body">
-                    <form role="form">
+                    <form class="form-inline">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <label class="sr-only">Email address</label>
+                            <input type="groupname" class="form-control" placeholder="权限组名">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Example block-level help text here.</p>
-                        </div>
-                     
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary ajax-post confirm" target-url="{:U('add')}" target-form="form-inline">增加</button>
                     </form>
                 </div>
             </section>
@@ -44,7 +37,6 @@
                 if ($(_this).hasClass('confirm')) {
                     if (!confirm('确认要执行该操作吗?')) {
                         return false;
-
                     }
                     $.ajax({
                         type: "post",
@@ -52,8 +44,9 @@
                         dataType: "json",
                         data: $('.' + $(_this).attr('target-form')).serialize(),
                         success: function(data) {
+                            alert(data.info);
                             if (data.status == 1) {
-                                alert(data.info);
+
                             }
                         }
                     });
