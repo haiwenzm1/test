@@ -8,84 +8,110 @@
 </block>
 
 <block name="style">
+    .last{
+        list-style:none;
+    }
+    .last:hover{
+        background:#ccc;
+    }
 </block>
 
 <block name="body">
-    <section class="panel">
-        <div class="panel-body">
-            <button class="btn btn-info" type="button">新增</button>
-            <button class="btn btn-success" type="button">启用</button>
-            <button class="btn btn-primary" type="button">禁用</button>
-            <button class="btn btn-danger" type="button">删除</button>
-            <button class="btn btn-link" type="button">Link</button>
-            <button class="btn btn-link" type="button">Link</button>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <button class="btn btn-info" type="button">新增</button>
+                    <button class="btn btn-success" type="button">启用</button>
+                    <button class="btn btn-primary" type="button">禁用</button>
+                    <button class="btn btn-danger" type="button">删除</button>
+                </header>
+            </section>
         </div>
-    </section>
+    </div>
 
-    <div id="content"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <a class="btn btn-link selectClick">全选</a>|<a class="btn btn-link cancleClick">取消全选</a>
+                </header>
+                <div class="panel-body" id="content">
+                </div>
+            </section>
+        </div>
+    </div>
 </block>
 
 <block name="js">
     <!--ios7-->
-    <script src="/Public/AdminEx/js/ios-switch/switchery.js" ></script>
-    <script src="/Public/AdminEx/js/ios-switch/ios-init.js" ></script>
+    <script src="/Public/AdminEx/js/ios-switch/switchery.js"></script>
+    <script src="/Public/AdminEx/js/ios-switch/ios-init.js"></script>
     <!--icheck -->
     <script src="/Public/AdminEx/js/iCheck/jquery.icheck.js"></script>
 </block>
 
 <block name="script">
-    $(function() {
-        var fuc = {
-            init: function () {
-                this.bindEvent();
-                this.renderTable("init");
-            },
-            handleData: function(data){
-                if(data){
-                    var htmlStr = '';
-                    for(var i = 0; i < data.length; i++ ){
-                        htmlStr += '<div class="row"><div class="col-lg-12"><section class="panel">';
-                        htmlStr += '<header class="panel-heading"> '+ data[i]['name'] +' <span class="tools pull-right"><a class="fa fa-chevron-down" href="javascript:;"></a> </span></header>';
-                        if(data[i]['list']){
-                            htmlStr += '<div class="panel-body"><div class="row"><div class="col-md-12"><div class="adv-table"><table class="display table table-bordered table-striped"><tbody>';
-                            for(var j = 0; j < data[i]['list'].length; j++ ){
-                                htmlStr += '<tr><td><div class="icheck"><div class="flat-green single-row"><div class="radio">';
-                                htmlStr += '<input type="checkbox" name="radio'+ i +'"><label>'+data[i]['list'][j]['name']+'</label>';
-                                htmlStr += '</div></div></div></td>';
-
-                                htmlStr += '<td><p class="text-warning">描述</p></td>';
-                                htmlStr += '<td>状态</td>';
-
-                                htmlStr += '<td><button class="btn btn-link" type="button">禁用</button><button class="btn btn-link" type="button">删除</button></td>';
-                                 
-                                htmlStr += '</tr>';
-
-                            }
-                            htmlStr += '</div></div></div></tbody></table></div>';
-                        }
-                        htmlStr += '</section></div></div>';
+$(function() {
+    var fuc = {
+        config: {
+            htmlStr: ''
+        },
+        init: function() {
+            this.renderTable();
+            this.bindEvent();
+        },
+        handleData: function(data) {
+            if (data) {
+                var that = this;
+                for (var i = 0; i < data.length; i++) {
+                    that.config.htmlStr += '<ul>';
+                    if(data[i]['is_last']==1){
+                        that.config.htmlStr += '<li class="clearfix last">';
+                        that.config.htmlStr += '<a class="btn a_checkbox" href="javascript:;"><input type="checkbox" name="auth" />&nbsp;' + data[i]['name'] + '</a>';
+                        that.config.htmlStr += '<a class="btn btn-link pull-right">删除</a>';
+                        that.config.htmlStr += '<a class="btn btn-link pull-right">禁用</a>';
+                        that.config.htmlStr += '<a class="btn btn-link pull-right">访问授权</a>';
+                        that.config.htmlStr += '</li>';    
+                    }else{
+                        that.config.htmlStr += '<li>' + data[i]['name'] + '</li>';
                     }
-                    return htmlStr;
+                    if (data[i]['list']) {
+                        that.handleData(data[i]['list']);
+                    }
+                    that.config.htmlStr += '</ul>';
                 }
-            },
-            bindEvent: function () {
-                var that = this;
-            },
-            renderTable: function() {
-                var that = this;
-                $.ajax({
-                    type: "post",
-                    url: "{:U('getAllInfo')}",
-                    success: function(data) {
-                         if(data.info.length){
-                            $('#content').empty().append(that.handleData(data.info));
-                            $('.flat-green input').iCheck({checkboxClass: 'icheckbox_flat-green', radioClass: 'iradio_flat-green'});
-                         }
-                    }
-                })
+                return that.config.htmlStr;
             }
-        }
+        },
+        bindEvent: function() {
+            var that = this;
+            $(document).on('click','.a_checkbox',function(){
+                $(this).find('[type=checkbox]').prop('checked',!$(this).find('[type=checkbox]').prop('checked'));
+            });
 
-        fuc.init(); 
-    });
+            $(document).on('click','.selectClick',function(){
+                $("#content").find('[type=checkbox]').prop('checked',true);
+            });
+
+            $(document).on('click','.cancleClick',function(){
+                $("#content").find('[type=checkbox]').prop('checked',false);
+            });
+        },
+        renderTable: function() {
+            var that = this;
+            $.ajax({
+                type: "post",
+                url: "{:U('getAllInfo')}",
+                success: function(data) {
+                    if (data.info.length) {
+                        $('#content').empty().append(that.handleData(data.info));
+                    }
+                }
+            })
+        }
+    }
+
+    fuc.init();
+});
 </block>
