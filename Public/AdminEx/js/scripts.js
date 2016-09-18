@@ -130,7 +130,7 @@
    }
 
     // panel collapsible
-    $('.panel .tools .fa').click(function () {
+    $(document).on('click', '.panel .tools .fa', function () {
         var el = $(this).parents(".panel").children(".panel-body");
         if ($(this).hasClass("fa-chevron-down")) {
             $(this).removeClass("fa-chevron-down").addClass("fa-chevron-up");

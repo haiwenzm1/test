@@ -5,12 +5,19 @@ use Think\Controller;
 
 class MenuController extends Controller{
     public function index(){
-        $datas = D('AuthGroup','Logic')->getAllInfo();
-        $tmp = get_array($datas);
-        $this->assign('datas',$tmp);
         $this->meta_title = '增加权限组';
         $this->display();
     }
+
+    public function getAllInfo(){
+        if(IS_POST){
+            $datas = D('AuthGroup','Logic')->getAllInfo();
+            $data['info'] = $datas;
+            $data['status'] = 1;
+            $data['url'] = "";
+            $this->ajaxReturn($data);
+        }
+     }
 
     public function add(){
         if(IS_POST){

@@ -429,8 +429,9 @@
 
 	<!--common scripts for all pages-->
 	<script src="/Public/AdminEx/js/scripts.js"></script>
-
 	
+	<script type="text/javascript">
+		
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '.ajax-post', function() {
@@ -457,6 +458,7 @@
         });
     </script>
 
+	</script>
 
 </body>
 
