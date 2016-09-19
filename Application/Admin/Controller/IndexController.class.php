@@ -3,13 +3,8 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class IndexController extends Controller {
-    public function index(){
-        echo 'ok';
-    }
-    
     public function login(){
         $this->meta_title = '后台管理系统';
-        //$this->assign('meta_title','后台管理系统');
         $this->display();
     }
 

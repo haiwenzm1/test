@@ -37,6 +37,10 @@
        padding-left:0;
     }
 
+    #content li+ul{
+       display:none;
+    }
+
     #content ul:before {
         width: 1px;
         z-index:1;
@@ -507,21 +511,26 @@ $(function () {
                     if (parseInt(data[i]['is_last'])) {
                         that.config.htmlStr += '<li class="clearfix last">';
                         that.config.htmlStr += '<a class="btn a_checkbox" href="javascript:;"><input type="checkbox" name="auth" value="' + parseInt(data[i]['id']) + '" />&nbsp;' + data[i]['name'] + '</a>';
-                        that.config.htmlStr += '<a class="btn btn-link pull-right deleteClick">删除</a>';
                         that.config.htmlStr += '<a class="btn btn-link pull-right">' + (parseInt(data[i]['status']) ? '禁用' : '启用') + '</a>';
                         that.config.htmlStr += '<a class="btn btn-link pull-right">访问授权</a>';
                     } else {
-                        that.config.htmlStr += '<li class="clearfix"><a class="btn" href="javascript:;"><i class="fa fa-folder"></i>&nbsp;' + data[i]['name'] + '</a>';
-                        if (parseInt(data[i]['pid'])) {
-                            that.config.htmlStr += '<a class="btn btn-link pull-right deleteClick">删除</a>';
-                        }
+                        that.config.htmlStr += '<li class="clearfix"><a class="btn switchClick" href="javascript:;"><i class="fa fa-folder"></i>&nbsp;' + data[i]['name'] + '</a>';
+                        
                         that.config.htmlStr += '<a class="btn btn-link pull-right addClick">增加</a>';
                     }
+
+                    if (parseInt(data[i]['pid'])) {
+                        that.config.htmlStr += '<a class="btn btn-link pull-right deleteClick">删除</a>';
+                        that.config.htmlStr += '<a class="btn btn-link pull-right editClick">编辑</a>';
+                    }
+
                     that.config.htmlStr += '<input type="hidden" name="id" value="' + parseInt(data[i]['id']) + '">';
                     that.config.htmlStr += '</li>';
 
                     if (data[i]['list']) {
                         that.handleData(data[i]['list']);
+                    }else{
+                        that.config.htmlStr += '<ul><li>还没有内容，快去添加吧</li></ul>';
                     }
                 }
                 that.config.htmlStr += '</ul>';
@@ -535,12 +544,26 @@ $(function () {
                 $(this).find('[type=checkbox]').prop('checked', !$(this).find('[type=checkbox]').prop('checked'));
             });
 
+            $(document).on('click', '.switchClick', function () {
+                if($(this).parent().next('ul')[0]){
+                    if($(this).parent().next('ul').is(":hidden")){
+                        $(this).parent().next('ul').show().siblings('ul').hide();
+                    }else{
+                        $(this).parent().next('ul').hide();
+                    }
+                }else{
+                    $(this).parent().siblings('ul').hide();
+                }
+            });
+
             $(document).on('click', '.fullClick', function () {
                 $("#content").find('[type=checkbox]').prop('checked', true);
+                $("#content").find('ul').show();
             });
 
             $(document).on('click', '.nofullClick', function () {
                 $("#content").find('[type=checkbox]').prop('checked', false);
+                $("#content").find('ul').eq(0).find('ul').hide();
             });
 
             $(document).on('click', '.deleteClick', function () {

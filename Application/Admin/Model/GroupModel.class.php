@@ -3,9 +3,9 @@
 namespace Admin\Model;
 use Think\Model;
 
-class AuthGroupModel extends Model{
+class GroupModel extends Model{
     public function getAllInfo(){
-        $results = $this->where('status=1')->select();
+        $results = $this->where('is_delete=0')->select();
         return $results;
     }
 	
