@@ -172,6 +172,45 @@ $(function () {
             that.showMask(html);
             Vertify('addForm', 0);
         },
+        editClick: function (e) {
+            var that = this;
+            $.ajax({
+                type:"post",
+                url:"{:U('getInfoById')}",
+                data:{id:$(e).parent().find('[name=id]').val()},
+                success:function(data){
+                    var html = '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">编辑权限组</h3></div><div class="panel-body"><form class="form-horizontal" id="addForm">';
+                    html += '<div class="form-group"><label class="col-lg-2 col-sm-2 control-label">分组</label><div class="col-lg-10">';
+                    html += '<input type="text" class="form-control" placeholder="' + data.info[0]['pname'] + '" readonly>';
+                    html += '</div></div>';
+                    html += '<div class="form-group"><label class="col-lg-2 col-sm-2 control-label">名称</label><div class="col-lg-10">';
+                    html += '<input type="text" name="name" vertify="string_1_20" class="form-control" value="'+data.info[0]['name']+'">';
+                    html += '</div></div>';
+                    html += '<div class="form-group"><label class="col-sm-2 control-label">描述</label><div class="col-sm-10">';
+                    html += '<textarea rows="6" class="form-control" name="description" vertify="string_0_500">'+data.info[0]['description']+'</textarea>';
+                    html += '</div></div>';
+                    html += '<div class="form-group"><label class="col-sm-2 control-label col-lg-2">类别</label><div class="col-lg-10">';
+                    html += '<label class="checkbox-inline"><input type="radio" name="last" value="1" '+((data.info[0]['is_last']==1)?'checked="checked"':'')+'> 权限组</label>';
+                    html += '<label class="checkbox-inline"><input type="radio" name="last" value="0" '+((data.info[0]['is_last']==0)?'checked="checked"':'')+'> 权限组分类</label>';
+                    html += '</div></div>';
+                    html += '<div class="form-group">';
+                    html += '<input type="hidden" class="form-control" name="id" value="' + data.info[0]['id'] + '" >';
+                    html += '</div>';
+                    html += '<div class="form-group"><div class="col-lg-offset-2 col-lg-1">';
+                    html += '<a href="javascript:;" class="btn btn-success saveClick" data="addForm">保存</a>';
+                    html += '</div><div class="col-lg-1">';
+                    html += '<a href="javascript:;" class="btn btn-primary cancleClick">取消</a>';
+                    html += '</div></div>';
+                    html += '</form></div></div>';
+                    
+                    that.showMask(html);
+                    Vertify('addForm', 0);
+                },
+                error:function(){
+                    alert("网络出错,请重试");
+                }
+            });
+        },
         saveClick:function(e){
             var that = this;
             $(e).attr('disabled',true);
@@ -226,7 +265,7 @@ $(function () {
                 that.addClick(this);
             });
             $(document).on('click', '.editClick', function () {
-                
+                that.editClick(this);
             });
             $(document).on('click', '.saveClick', function () {
                 that.saveClick(this);

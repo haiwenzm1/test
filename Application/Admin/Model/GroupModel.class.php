@@ -9,6 +9,16 @@ class GroupModel extends Model{
         return $result;
     }
 
+    public function getInfoById($id){
+        $map['id']=$id;
+        return $this->where($map)->select();
+    }
+
+    public function getPinfoByPid($pid){
+        $map['id'] = $pid;
+        return $this->field("name")->where($map)->select();
+    }
+
     public function getRoleidById($id){
         $map['id'] = $id;
         $result = $this->field('roleid')->where($map)->select();

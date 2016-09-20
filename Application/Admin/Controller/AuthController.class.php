@@ -19,6 +19,20 @@ class AuthController extends Controller{
         }
      }
 
+     public function getInfoById(){
+        if(IS_POST){
+            try{
+                $datas = D('Group','Logic')->getInfoById($_POST);
+                $data['info'] = $datas;
+                $data['status'] = 1;
+                $data['url'] = "";
+                $this->ajaxReturn($data); 
+            }catch(\Exception $e){
+                $this->error("操作异常");
+            }
+        }
+     }
+
      public function addInfo(){
         if(IS_POST){
             try {

@@ -10,6 +10,14 @@ class GroupLogic extends Model {
         return $tmp;
     }
 
+    public function getInfoById($data){
+        $id = $data['id'];
+        $result = D('Group')->getInfoById($id);
+        $tmp = D('Group')->getPinfoByPid($result[0]['pid']); 
+        $result[0]['pname'] = $tmp[0]['name'];
+        return $result;
+    }
+
     public function addInfo($data){
         $result = D('Group')->getRoleidById($data['pid']);
         if($result[0]['roleid']){
