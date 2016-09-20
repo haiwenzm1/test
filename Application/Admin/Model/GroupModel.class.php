@@ -5,12 +5,18 @@ use Think\Model;
 
 class GroupModel extends Model{
     public function getAllInfo(){
-        $results = $this->where('is_delete=0')->select();
-        return $results;
+        $result = $this->where('is_delete=0')->select();
+        return $result;
+    }
+
+    public function getRoleidById($id){
+        $map['id'] = $id;
+        $result = $this->field('roleid')->where($map)->select();
+        return $result;
     }
 	
-	public function add(){
-        $results = $this->where('status=1')->select();
-        return $results;
+	public function addInfo($data){
+        $result = $this->data($data)->add();
+        return $result;
     }
 }

@@ -18,4 +18,19 @@ class AuthController extends Controller{
             $this->ajaxReturn($data);
         }
      }
+
+     public function addInfo(){
+        if(IS_POST){
+            try {
+                $data = D('Group','Logic')->addInfo($_POST);
+                 if($data){
+                     $this->success("操作成功");
+                 }else{
+                     $this->error("操作失败"); 
+                 }
+            } catch (\Exception $e) {
+                $this->error("操作异常");
+            }
+        }
+     }
 }
