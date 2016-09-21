@@ -4,22 +4,29 @@ namespace Admin\Logic;
 use Think\Model;
 
 class GroupLogic extends Model {
+
     public function getAllInfo(){
         $result = D('Group')->getAllInfo();
-        $tmp = get_array($result);
-        return $tmp;
+        return get_array($result);
     }
 
     public function getInfoById($data){
-        $id = $data['id'];
-        $result = D('Group')->getInfoById($id);
-        $tmp = D('Group')->getPinfoByPid($result[0]['pid']); 
-        $result[0]['pname'] = $tmp[0]['name'];
+        $map = array();
+        $map['id'] = $data['id'];
+        $result = D('Group')->getInfoById($map);
+        
+        $map = array();
+        $map['id'] = $result[0]['pid'];
+        $pname = D('Group')->getNameByPid($map);
+        $result[0]['pname'] = $pname[0]['name'];
+
         return $result;
     }
 
     public function addInfo($data){
-        $result = D('Group')->getRoleidById($data['pid']);
+        $map = array();
+        $map['id'] = $data['pid'];
+        $result = D('Group')->getRoleidById($map);
         if($result[0]['roleid']){
             $datas = array();
             $datas['pid'] = $data['pid'];
@@ -29,11 +36,26 @@ class GroupLogic extends Model {
             $datas['create_time'] = time();
             $datas['update_time'] = $datas['create_time'];
             $datas['roleid'] = $result[0]['roleid'];
-            
-            $result = D('Group')->addInfo($datas);
-            return $result;
+            return D('Group')->addInfo($datas);
         }else{
             return false;
         }   
+    }
+
+    public function updateInfoById($data){
+        $map = array();
+        $map['id'] = $data['id'];
+        $map['name'] = $data['name'];
+        $map['description'] = $data['description'];
+        $map['update_time'] = time();
+        return D('Group')->updateInfoById($map);
+    }
+
+    public function deleteInfoById($data){
+        $map = array();
+        $map['id'] = $data['id'];
+        $map['is_delete'] = 1;
+        $map['update_time'] = time();
+        return D('Group')->deleteInfoById($map);
     }
 }

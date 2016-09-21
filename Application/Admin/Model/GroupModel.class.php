@@ -4,29 +4,32 @@ namespace Admin\Model;
 use Think\Model;
 
 class GroupModel extends Model{
+
     public function getAllInfo(){
-        $result = $this->where('is_delete=0')->select();
-        return $result;
+        return $this->where('is_delete=0')->select();
     }
 
-    public function getInfoById($id){
-        $map['id']=$id;
+    public function getInfoById($map){
         return $this->where($map)->select();
     }
 
-    public function getPinfoByPid($pid){
-        $map['id'] = $pid;
+    public function getNameByPid($map){
         return $this->field("name")->where($map)->select();
     }
 
-    public function getRoleidById($id){
-        $map['id'] = $id;
-        $result = $this->field('roleid')->where($map)->select();
-        return $result;
+    public function getRoleidById($map){
+        return $this->field('roleid')->where($map)->select();
     }
 	
-	public function addInfo($data){
-        $result = $this->data($data)->add();
-        return $result;
+	public function addInfo($map){
+        return $this->data($map)->add();
+    }
+
+    public function updateInfoById($map){
+        return $this->data($map)->save();
+    }
+
+    public function deleteInfoById($map){
+        return $this->data($map)->save();
     }
 }

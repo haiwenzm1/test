@@ -17,8 +17,7 @@
 	<link href="/Public/AdminEx/css/style.css" rel="stylesheet">
 	<link href="/Public/AdminEx/css/style-responsive.css" rel="stylesheet">
 
-	<style type="text/css">
-		
+	
     #content ul {
         list-style:none;
         position:relative;
@@ -62,7 +61,6 @@
         vertical-align:middle;
     }
 
-	</style>
 	
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -492,8 +490,7 @@
 	<!--common scripts for all pages-->
 	<script src="/Public/AdminEx/js/scripts.js"></script>
 	
-	<script type="text/javascript">
-		
+	
 $(function () {
     var fuc = {
         config: {
@@ -602,7 +599,6 @@ $(function () {
     fuc.init();
 });
 
-	</script>
 
 </body>
 
