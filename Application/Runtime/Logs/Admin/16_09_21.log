@@ -2202,3 +2202,617 @@ SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0030s ]
 SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0080s ]
 SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0080s ]
 
+[ 2016-09-21T20:43:40+08:00 ] 127.0.0.1 /Admin/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000436s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000688s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.020095s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.020164s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038406s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038469s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.015275s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.015339s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011113s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011179s ]
+
+[ 2016-09-21T20:43:50+08:00 ] 127.0.0.1 /Admin/auth/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000877s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000935s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000227s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.112933s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.113056s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001262s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001366s ]
+
+[ 2016-09-21T20:43:53+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000668s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001002s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001086s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000252s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000338s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.094941s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.095005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000446s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000508s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001421s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001518s ]
+
+[ 2016-09-21T20:43:54+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000400s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000432s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0424s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0006s ]
+
+[ 2016-09-21T21:55:57+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000300s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000497s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000529s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000140s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000178s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010684s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010720s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000406s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000582s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000615s ]
+
+[ 2016-09-21T21:55:57+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000090s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000485s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000427s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000474s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0009s ]
+
+[ 2016-09-21T21:56:01+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000636s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000691s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000181s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000253s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016582s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016633s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000302s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000641s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000690s ]
+
+[ 2016-09-21T21:56:02+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000312s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000519s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000550s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0006s ]
+
+[ 2016-09-21T21:56:04+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000543s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000783s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000851s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000103s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000140s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017913s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017959s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000318s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000346s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001050s ]
+
+[ 2016-09-21T21:56:05+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000478s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000582s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0006s ]
+
+[ 2016-09-21T21:56:10+08:00 ] 127.0.0.1 /Admin/Auth/getInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000390s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000611s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0005s ]
+SQL: SELECT `name` FROM `ec_group` WHERE `id` = '2'  [ RunTime:0.0003s ]
+
+[ 2016-09-21T21:56:15+08:00 ] 127.0.0.1 /Admin/Auth/updateInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000463s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000510s ]
+
+[ 2016-09-21T21:57:20+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000688s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000128s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000172s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016086s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016127s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000182s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000208s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000391s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000422s ]
+
+[ 2016-09-21T21:57:21+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000569s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000686s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0005s ]
+
+[ 2016-09-21T21:57:28+08:00 ] 127.0.0.1 /Admin/Auth/getInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000492s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000534s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0003s ]
+SQL: SELECT `name` FROM `ec_group` WHERE `id` = '2'  [ RunTime:0.0002s ]
+
+[ 2016-09-21T21:57:35+08:00 ] 127.0.0.1 /Admin/Auth/updateInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000341s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000435s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0025s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 48 行.
+
+[ 2016-09-21T22:00:26+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000544s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000868s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000925s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000132s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013929s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013969s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000272s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000296s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000629s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000669s ]
+
+[ 2016-09-21T22:00:27+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000388s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0008s ]
+
+[ 2016-09-21T22:01:06+08:00 ] 127.0.0.1 /Admin/Auth/getInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000272s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000385s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000414s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0026s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `ec_group` WHERE `id` = '2'  [ RunTime:0.0003s ]
+SQL: SELECT `name` FROM `ec_group` WHERE `id` = '1'  [ RunTime:0.0003s ]
+
+[ 2016-09-21T22:01:14+08:00 ] 127.0.0.1 /Admin/Auth/updateInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000400s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000436s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0026s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0023s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '2'  [ RunTime:0.0003s ]
+SQL: UPDATE `ec_group` SET `name`='一级菜单1-子菜单11',`description`='',`version`='2',`update_time`='1474466474' WHERE `id` = '2' [ RunTime:0.0570s ]
+
+[ 2016-09-21T22:01:17+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000446s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000620s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000671s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0004s ]
+
+[ 2016-09-21T22:03:21+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000517s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000899s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000963s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0020s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 64 行.
+
+[ 2016-09-21T22:03:25+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000446s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000683s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015666s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000298s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000323s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000539s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000584s ]
+
+[ 2016-09-21T22:03:27+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000307s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000516s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000550s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000138s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010593s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010623s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000282s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000306s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000576s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000615s ]
+
+[ 2016-09-21T22:03:28+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000312s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000415s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000456s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0006s ]
+
+[ 2016-09-21T22:03:36+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000627s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000678s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0019s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 64 行.
+
+[ 2016-09-21T22:03:41+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000797s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000123s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010745s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010800s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000189s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000221s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000514s ]
+
+[ 2016-09-21T22:03:42+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000677s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000727s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0027s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0006s ]
+
+[ 2016-09-21T22:03:51+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000436s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000674s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0027s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0021s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 64 行.
+
+[ 2016-09-21T22:04:18+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000632s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000492s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000537s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000108s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010747s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010780s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000291s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000318s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000519s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000551s ]
+
+[ 2016-09-21T22:04:19+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000388s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000421s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0008s ]
+
+[ 2016-09-21T22:04:37+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000445s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000644s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000695s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0031s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 64 行.
+
+[ 2016-09-21T22:04:40+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000635s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000840s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000926s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000137s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016309s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016354s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000181s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000205s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000384s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000415s ]
+
+[ 2016-09-21T22:04:40+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000484s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0004s ]
+
+[ 2016-09-21T22:04:45+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000628s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000487s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000525s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0021s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 64 行.
+
+[ 2016-09-21T22:05:10+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000492s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0017s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: version E:\Program\tptest.com\Application\Admin\Logic\GroupLogic.class.php 第 64 行.
+
+[ 2016-09-21T22:07:26+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001041s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000126s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010372s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010417s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000286s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000312s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000688s ]
+
+[ 2016-09-21T22:07:26+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000578s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000709s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000772s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0033s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0009s ]
+
+[ 2016-09-21T22:07:54+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000519s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000749s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000809s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0028s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0004s ]
+
+[ 2016-09-21T22:08:04+08:00 ] 127.0.0.1 /Admin/Auth/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000669s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000966s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001050s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000150s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000199s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016993s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017055s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000439s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000478s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000782s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000833s ]
+
+[ 2016-09-21T22:08:04+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000737s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000844s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0004s ]
+
+[ 2016-09-21T22:08:10+08:00 ] 127.0.0.1 /Admin/Auth/deleteInfoById.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000540s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000649s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000705s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0023s ]
+SQL: SELECT `version` FROM `ec_group` WHERE `id` = '8'  [ RunTime:0.0003s ]
+SQL: UPDATE `ec_group` SET `is_delete`='1',`update_time`='1474466890',`version`='3' WHERE `id` = '8' [ RunTime:0.0572s ]
+
+[ 2016-09-21T22:08:12+08:00 ] 127.0.0.1 /Admin/Auth/getAllInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000456s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000659s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000716s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `ec_group` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `ec_group` WHERE ( is_delete=0 )  [ RunTime:0.0005s ]
+

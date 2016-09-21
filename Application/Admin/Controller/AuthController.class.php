@@ -19,24 +19,22 @@ class AuthController extends Controller{
 
     public function getAllInfo(){
         if(IS_POST){
-            $datas = D('Group','Logic')->getAllInfo();
-            $data['info'] = $datas;
-            $data['status'] = 1;
-            $data['url'] = "";
-            $this->ajaxReturn($data);
+            $result = D('Group','Logic')->getAllInfo();
+            if($result['code']){
+                $this->success($result['info']); 
+            }
         }
      }
 
     public function getInfoById(){
         if(IS_POST){
             try{
-                $datas = D('Group','Logic')->getInfoById($_POST);
-                $data['info'] = $datas;
-                $data['status'] = 1;
-                $data['url'] = "";
-                $this->ajaxReturn($data); 
+                $result = D('Group','Logic')->getInfoById($_POST);
+                if($result['code']){
+                    $this->success($result['info']); 
+                }
             }catch(\Exception $e){
-                $this->error("操作异常");
+                $this->error("系统异常");
             }
         }
      }
@@ -44,14 +42,14 @@ class AuthController extends Controller{
     public function addInfo(){
         if(IS_POST){
             try {
-                $data = D('Group','Logic')->addInfo($_POST);
-                if($data){
-                    $this->success("操作成功");
+                $result = D('Group','Logic')->addInfo($_POST);
+                if($result['code']){
+                    $this->success($result['msg']);
                 }else{
-                    $this->error("操作失败"); 
+                    $this->error($result['msg']); 
                 }
             } catch (\Exception $e) {
-                $this->error("操作异常");
+                $this->error("系统异常");
             }
         }
     }
@@ -59,14 +57,14 @@ class AuthController extends Controller{
     public function updateInfoById(){
         if(IS_POST){
             try {
-                $data = D('Group','Logic')->updateInfoById($_POST);
-                if($data){
-                    $this->success("操作成功");
+                $result = D('Group','Logic')->updateInfoById($_POST);
+                if($result['code']){
+                    $this->success($result['msg']);
                 }else{
-                    $this->error("操作失败"); 
+                    $this->error($result['msg']); 
                 }
             } catch (\Exception $e) {
-                $this->error("操作异常");
+                $this->error("系统异常");
             }
         }
     }
@@ -74,14 +72,14 @@ class AuthController extends Controller{
     public function deleteInfoById(){
         if(IS_POST){
             try {
-                $data = D('Group','Logic')->deleteInfoById($_POST);
-                if($data){
-                    $this->success("操作成功");
+                $result = D('Group','Logic')->deleteInfoById($_POST);
+                if($result['code']){
+                    $this->success($result['msg']);
                 }else{
-                    $this->error("操作失败"); 
+                    $this->error($result['msg']); 
                 }
             } catch (\Exception $e) {
-                $this->error("操作异常");
+                $this->error("系统异常");
             }
         }
     }

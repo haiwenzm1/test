@@ -525,7 +525,7 @@
                             if (parseInt(data[i]['is_last'])) {
                                 that.config.htmlStr += '<li class="clearfix last">';
                                 that.config.htmlStr += '<a class="btn a_checkbox" href="javascript:;"><input type="checkbox" name="auth" value="' + parseInt(data[i]['id']) + '" />&nbsp;' + data[i]['name'] + '</a>';
-                                that.config.htmlStr += '<a class="btn btn-link pull-right">' + (parseInt(data[i]['status']) ? '禁用' : '启用') + '</a>';
+                                that.config.htmlStr += '<a class="btn btn-link pull-right statusClick">' + (parseInt(data[i]['status']) ? '禁用' : '启用') + '</a>';
                                 that.config.htmlStr += '<a class="btn btn-link pull-right">访问授权</a>';
                             } else {
                                 that.config.htmlStr += '<li class="clearfix"><a href="javascript:;" class="btn switchClick"><i class="fa fa-folder"></i>&nbsp;' + data[i]['name'] + '</a>';
@@ -538,6 +538,8 @@
                                 that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right editClick">编辑</a>';
                             }
                             that.config.htmlStr += '<input type="hidden" name="id" value="' + parseInt(data[i]['id']) + '">';
+                            that.config.htmlStr += '<input type="hidden" name="version" value="' + parseInt(data[i]['version']) + '">';
+                            that.config.htmlStr += '<input type="hidden" name="status" value="' + parseInt(data[i]['status']) + '">';
                             that.config.htmlStr += '</li>';
                             if(data[i]['is_last']==0){
                                 if (data[i]['list']) {
@@ -604,6 +606,7 @@
                             html += '</div></div>';
                             html += '<div class="form-group">';
                             html += '<input type="hidden" class="form-control" name="id" value="' + data.info[0]['id'] + '" >';
+                            html += '<input type="hidden" class="form-control" name="version" value="' + data.info[0]['version'] + '" >';
                             html += '</div>';
                             html += '<div class="form-group"><div class="col-lg-offset-2 col-lg-1">';
                             html += '<a href="javascript:;" class="btn btn-success updateClick" data="addForm">保存</a>';
@@ -657,7 +660,7 @@
                     $.ajax({
                         type:'post',
                         data:$('#'+$(e).attr('data')).serialize(),
-                        url:"<?php echo U('updateInfo');?>",
+                        url:"<?php echo U('updateInfoById');?>",
                         cache: false,
                         success:function(data){
                             $(e).attr('disabled',false);
@@ -677,7 +680,7 @@
                     $(e).attr('disabled',true);
                     $.ajax({
                         type:'post',
-                        data: {id:$(e).parent().find('[name=id]').val()},
+                        data: {id:$(e).parent().find('[name=id]').val(),version:$(e).parent().find('[name=version]').val()},
                         url:"<?php echo U('deleteInfoById');?>",
                         cache: false,
                         success:function(data){

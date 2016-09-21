@@ -13,6 +13,10 @@ class GroupModel extends Model{
         return $this->where($map)->select();
     }
 
+    public function getVersionById($map){
+        return $this->field("version")->where($map)->select();
+    }
+
     public function getNameByPid($map){
         return $this->field("name")->where($map)->select();
     }
