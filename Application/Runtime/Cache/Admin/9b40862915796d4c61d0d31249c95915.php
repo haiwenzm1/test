@@ -456,21 +456,11 @@
         <div class="col-md-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <a href="javascript:;" class="btn btn-info newClick">新增</a>
-                    <a href="javascript:;" class="btn btn-success">启用</a>
-                    <a href="javascript:;" class="btn btn-primary">禁用</a>
-                    <a href="javascript:;" class="btn btn-danger">删除</a>
-                </header>
-            </section>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <section class="panel">
-                <header class="panel-heading">
                     <a href="javascript:;" class="btn btn-link fullClick">全选</a> |
                     <a href="javascript:;" class="btn btn-link nofullClick">取消全选</a>
+                    <a href="javascript:;" class="btn btn-link pull-right">删除</a>
+                    <a href="javascript:;" class="btn btn-link pull-right">禁用</a>
+                    <a href="javascript:;" class="btn btn-link pull-right">启用</a>
                 </header>
                 <div class="panel-body" id="content"></div>
             </section>
@@ -570,31 +560,6 @@
                     html += '<div class="form-group">';
                     html += '<input type="hidden" class="form-control" name="pid" value="' + $(e).parent().find('[name=id]').val() + '" >';
                     html += '</div>';
-                    html += '<div class="form-group"><div class="col-lg-offset-2 col-lg-1">';
-                    html += '<a href="javascript:;" class="btn btn-success saveClick" data="addForm">保存</a>';
-                    html += '</div><div class="col-lg-1">';
-                    html += '<a href="javascript:;" class="btn btn-primary cancleClick">取消</a>';
-                    html += '</div></div>';
-                    html += '</form></div></div>';
-
-                    that.showMask(html);
-                    Vertify('addForm', 0);
-                },
-                newClick: function (e) {
-                    var that = this;
-                    var html = '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">增加权限组</h3></div><div class="panel-body"><form class="form-horizontal" id="addForm">';
-                    
-                    html += '<div class="form-group"><label class="col-lg-2 col-sm-2 control-label">名称</label><div class="col-lg-10">';
-                    html += '<input type="text" name="name" vertify="string_1_20" class="form-control" placeholder="20字符以内">';
-                    html += '</div></div>';
-                    html += '<div class="form-group"><label class="col-sm-2 control-label">描述</label><div class="col-sm-10">';
-                    html += '<textarea rows="6" class="form-control" name="description" vertify="string_0_500" placeholder="500字符以内"></textarea>';
-                    html += '</div></div>';
-                    html += '<div class="form-group"><label class="col-sm-2 control-label col-lg-2">类别</label><div class="col-lg-10">';
-                    html += '<label class="checkbox-inline"><input type="radio" name="last" value="1" checked="checked">权限组</label>';
-                    html += '<label class="checkbox-inline"><input type="radio" name="last" value="0">权限组分类</label>';
-                    html += '</div></div>';
-                    
                     html += '<div class="form-group"><div class="col-lg-offset-2 col-lg-1">';
                     html += '<a href="javascript:;" class="btn btn-success saveClick" data="addForm">保存</a>';
                     html += '</div><div class="col-lg-1">';
@@ -784,11 +749,6 @@
                     // 增加
                     $(document).on('click', '.addClick', function () {
                         that.addClick(this);
-                    });
-
-                    // 新增
-                    $(document).on('click', '.newClick', function () {
-                        that.newClick();
                     });
 
                     // 编辑
