@@ -11,6 +11,21 @@
 
 // 应用入口文件
 
+$url=trim($_SERVER["REQUEST_URI"]);
+if($url != '/'){
+    $url = explode('/',$url);
+    if(strlen($url[1])){
+        $dir = $_SERVER["DOCUMENT_ROOT"].'/Application/'.ucfirst($url[1]);
+        if(!file_exists($dir)){
+            echo '<script type="text/javascript">alert("The link does not exist!");window.history.go(-1);</script>';
+            exit;
+        }
+    }else{
+        echo '<script type="text/javascript">alert("The link does not exist!");window.history.go(-1);</script>';
+        exit;
+    }
+}
+
 // 检测PHP环境
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
