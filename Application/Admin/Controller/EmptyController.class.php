@@ -4,6 +4,6 @@ use Think\Controller;
 
 class EmptyController extends Controller{
     public function _empty(){
-        $this->error('链接不存在','/Admin/Public/login.html');
+        echo '<script type="text/javascript">alert("The link does not exist!");window.history.go(-1);</script>';
     }
 }

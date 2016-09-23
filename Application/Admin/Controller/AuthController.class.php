@@ -9,7 +9,7 @@ class AuthController extends Controller{
     }
     
     public function _empty(){
-        $this->error('链接不存在','/Admin/Auth/index.html');
+        echo '<script type="text/javascript">alert("The link does not exist!"); window.location.href = "/";</script>';
     }
     
     public function index(){
@@ -83,7 +83,7 @@ class AuthController extends Controller{
             }
         }
     }
-
+    
     public function updateStatusById(){
         if(IS_POST){
             try {
@@ -94,6 +94,19 @@ class AuthController extends Controller{
                     $this->error($result['msg']);
                 }
             } catch (\Exception $e) {
+                $this->error("系统异常");
+            }
+        }
+    }
+    
+    public function getMenuByRoleid(){
+        if(IS_POST){
+            try{
+                $result = D('Group','Logic')->getMenuByRoleid($_POST);
+                if($result['code']){
+                    $this->success($result['info']);
+                }
+            }catch(\Exception $e){
                 $this->error("系统异常");
             }
         }

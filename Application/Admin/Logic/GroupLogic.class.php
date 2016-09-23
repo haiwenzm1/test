@@ -86,4 +86,19 @@ class GroupLogic extends Model {
             return array('code'=> 0, 'msg'=>'请刷新重试', 'info'=> '');
         }
     }
+    
+    public function getMenuByRoleid($data){
+        $map = array();
+        $map['id'] = $data['id'];
+        $field = D('Group')->getFieldById('roleid',$map);
+        if($field[0]['roleid']){
+            $map = array();
+            $map['roleid'] = $field[0]['roleid'];
+            $info = D('Menu')->getAllInfo($map);
+            $result = get_array($info);
+            return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
+        }else{
+            return array('code'=> 0, 'msg'=>'获取角色失败,请重试', 'info'=> '');
+        }
+    }
 }

@@ -20,16 +20,16 @@
             padding-left: 40px;
         }
         
-        .last {
-            list-style: none;
-        }
-        
         #content li:hover {
             background: #eff0f4;
         }
         
         #content ul a {
             padding-left: 0;
+        }
+        
+        #content li+ul {
+            display: none;
         }
         
         #content ul:before {
@@ -458,9 +458,6 @@
                 <header class="panel-heading">
                     <a href="javascript:;" class="btn btn-link fullClick">全选</a> |
                     <a href="javascript:;" class="btn btn-link nofullClick">取消全选</a>
-                    <a href="javascript:;" class="btn btn-link pull-right">删除</a>
-                    <a href="javascript:;" class="btn btn-link pull-right">禁用</a>
-                    <a href="javascript:;" class="btn btn-link pull-right">启用</a>
                 </header>
                 <div class="panel-body" id="content"></div>
             </section>
@@ -512,10 +509,10 @@
                         that.config.htmlStr += '<ul>';
                         for (var i = 0; i < data.length; i++) {
                             if (parseInt(data[i]['is_last'])) {
-                                that.config.htmlStr += '<li class="clearfix last">';
+                                that.config.htmlStr += '<li class="clearfix">';
                                 that.config.htmlStr += '<a href="javascript:;" class="btn a_checkbox"><input type="checkbox" name="auth" value="' + parseInt(data[i]['id']) + '" />&nbsp;' + data[i]['name'] + '</a>';
                                 that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right statusClick">' + (parseInt(data[i]['status']) ? '禁用' : '启用') + '</a>';
-                                that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right">访问授权</a>';
+                                that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right authClick">访问授权</a>';
                             } else {
                                 that.config.htmlStr += '<li class="clearfix"><a href="javascript:;" class="btn switchClick"><i class="fa fa-folder"></i>&nbsp;' + data[i]['name'] + '</a>';
                                 that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right addClick">增加</a>';
@@ -538,6 +535,31 @@
                             }
                         }
                         that.config.htmlStr += '</ul>';
+                        return that.config.htmlStr;
+                    }
+                },
+                handleAuthData: function (data) {
+                    if (data) {
+                        var that = this;
+                        that.config.htmlStr += '<div class="col-lg-offset-1">';
+                        for (var i = 0; i < data.length; i++) {
+                            if (parseInt(data[i]['is_last'])) {
+                                that.config.htmlStr += '<a href="javascript:;" class="btn a_checkbox"><input type="checkbox" name="auth" value="' + parseInt(data[i]['id']) + '" />&nbsp;' + data[i]['name'] + '</a>';
+                            } else {
+                                if (data[i]['list']) {
+                                    that.config.htmlStr += '<div class="title">';
+                                    that.config.htmlStr += '<a href="javascript:;" class="btn"><i class="fa fa-folder"></i>&nbsp;' + data[i]['name'] + '</a>';
+                                    
+                                }
+                            }
+                            if (data[i]['is_last'] == 0) {
+                                if (data[i]['list']) {
+                                    that.handleAuthData(data[i]['list']);
+                                }
+                            }
+                        }
+                        that.config.htmlStr += '</div>';
+                        that.config.htmlStr += '</div>';
                         return that.config.htmlStr;
                     }
                 },
@@ -703,6 +725,34 @@
                         }
                     });
                 },
+                authClick: function(e){
+                    var that = this;
+                    $.ajax({
+                        type: 'post',
+                        data: { id: $(e).parent().find('[name=id]').val()},
+                        url: "<?php echo U('getMenuByRoleid');?>",
+                        cache: false,
+                        success: function (data) {
+                            if (data.status) {
+                                that.config.htmlStr = '';
+                                var html = '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">访问授权</h3></div><div class="panel-body"><form class="form-horizontal" id="addForm">';
+                                html += '<div class="form-group">' + that.handleAuthData(data.info) + '</div>';
+                                html += '<div class="form-group"><div class="col-lg-offset-2 col-lg-1">';
+                                html += '<a href="javascript:;" class="btn btn-success updateClick" data="addForm">保存</a>';
+                                html += '</div><div class="col-lg-1">';
+                                html += '<a href="javascript:;" class="btn btn-primary cancleClick">取消</a>';
+                                html += '</div></div>';
+                                html += '</form></div></div>';
+                                that.showMask(html);
+                            }else{
+                                alert(data.info);
+                            }
+                        },
+                        error: function () {
+                            alert("网络出错,请重试");
+                        }
+                    });
+                },
                 hideMask: function () {
                     $('#masklayershow').hide().empty();
                     $('#masklayerbg').hide().empty();
@@ -731,12 +781,13 @@
                     // 全选
                     $(document).on('click', '.fullClick', function () {
                         $("#content").find('[type=checkbox]').prop('checked', true);
-                        $("#content").find('ul').show();
+                        $("#content").find('li').next('ul').show();
                     });
 
                     // 取消全选
                     $(document).on('click', '.nofullClick', function () {
                         $("#content").find('[type=checkbox]').prop('checked', false);
+                        $("#content").find('li').next('ul').hide();
                     });
 
                     // 删除
@@ -777,6 +828,11 @@
                             that.hideMask();
                         }
                     });
+
+                    // 访问授权
+                    $(document).on('click', '.authClick', function () {
+                        that.authClick(this);
+                    });  
                 },
                 renderTable: function () {
                     var that = this;
