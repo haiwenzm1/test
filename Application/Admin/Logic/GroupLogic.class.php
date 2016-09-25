@@ -26,15 +26,17 @@ class GroupLogic extends Model {
         $map['id'] = $data['pid'];
         $field = D('Group')->getFieldById('roleid',$map);
         if($field[0]['roleid']){
-            $datas = array();
-            $datas['pid'] = $data['pid'];
-            $datas['name'] = $data['name'];
-            $datas['is_last'] = $data['last'];
-            $datas['description'] = $data['description'];
-            $datas['create_time'] = time();
-            $datas['update_time'] = $datas['create_time'];
-            $datas['roleid'] = $field[0]['roleid'];
-            $result = D('Group')->addInfo($datas);
+            $map = array();
+            $map['pid'] = $data['pid'];
+            $map['name'] = $data['name'];
+            $map['is_last'] = $data['last'];
+            $map['description'] = $data['description'];
+            $map['creator'] = -1;
+            $map['create_time'] = time();
+            $map['updater'] = -1;
+            $map['update_time'] = $map['create_time'];
+            $map['roleid'] = $field[0]['roleid'];
+            $result = D('Group')->addInfo($map);
             return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
         }else{
             return array('code'=> 0, 'msg'=>'获取角色失败,请重试', 'info'=> '');
@@ -50,6 +52,7 @@ class GroupLogic extends Model {
             $map['description'] = $data['description'];
             $map['version'] = intval($data['version'])+1;
             $map['update_time'] = time();
+            $map['updater'] = -1;
             $result = D('Group')->updateInfoById($map);
             return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
         }else{
@@ -64,6 +67,7 @@ class GroupLogic extends Model {
         if($field[0]['version'] == $data['version']){
             $map['is_delete'] = 1;
             $map['update_time'] = time();
+            $map['updater'] = -1;
             $map['version'] = intval($data['version'])+1;
             $result = D('Group')->updateInfoById($map);
             return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
@@ -79,6 +83,7 @@ class GroupLogic extends Model {
         if($field[0]['version'] == $data['version']){
             $map['status'] = $field[0]['status']?0:1;
             $map['update_time'] = time();
+            $map['updater'] = -1;
             $map['version'] = intval($data['version'])+1;
             $result = D('Group')->updateInfoById($map);
             return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);

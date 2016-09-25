@@ -4,6 +4,15 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class MenuController extends Controller{
+    
+    public function _initialize(){
+        //$this->error('虽已获得访问授权，但身份类型错误!','/Public/login');
+    }
+    
+    public function _empty(){
+        echo '<script type="text/javascript">alert("The link does not exist!"); window.location.href = "/";</script>';
+    }
+    
     public function index(){
         $this->meta_title = '菜单列表';
         $this->display('list');
@@ -12,25 +21,22 @@ class MenuController extends Controller{
     public function getAllInfo(){
         if(IS_POST){
             $datas = D('Menu','Logic')->getAllInfo();
-            $data['info'] = $datas;
-            $data['status'] = 1;
-            $data['url'] = "";
-            $this->ajaxReturn($data);
+            $this->success($datas);
         }
     }
     
-    public function add(){
+    public function addInfo(){
         if(IS_POST){
-            //print_r($_POST);
-            
-            if(!trim($_POST['groupname'])){
-                $this->error("权限组名不能为空");
+            try {
+                $result = D('Menu','Logic')->addInfo($_POST);
+                if($result['code']){
+                    $this->success($result['msg']);
+                }else{
+                    $this->error($result['msg']);
+                }
+            } catch (\Exception $e) {
+                $this->error("系统异常");
             }
-            
-            $this->success("操作成功");
-        }else{
-            $this->meta_title = '增加权限组';
-            $this->display();
         }
     }
 }

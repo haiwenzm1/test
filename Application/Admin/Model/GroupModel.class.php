@@ -24,4 +24,5 @@ class GroupModel extends Model{
     public function updateInfoById($map){
         return $this->data($map)->save();
     }
+    
 }
