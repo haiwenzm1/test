@@ -12,6 +12,13 @@ class MenuLogic extends Model{
         return $result;
     }
     
+    public function getAllInfoByPid($data){
+        $map = array();
+        $map['pid'] = intval($data['pid']);
+        $result = D('Menu')->getAllInfo($map);
+        return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
+    }
+    
     public function getInfoById($data){
         $map = array();
         $map['id'] = $data['id'];

@@ -9,7 +9,7 @@ class MenuModel extends Model{
         $map['is_delete'] = 0;
         return $this->where($map)->select();
     }
-    
+
     public function getInfoById($map){
         return $this->where($map)->select();
     }

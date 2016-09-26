@@ -14,41 +14,6 @@
 
 	
     <style type="text/css">
-        #content ul {
-            list-style: none;
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        #content li:hover {
-            background: #eff0f4;
-        }
-        
-        #content ul a {
-            padding-left: 0;
-        }
-        
-        #content ul:before {
-            width: 1px;
-            z-index: 1;
-            display: block;
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            border-left: 1px dotted #666;
-        }
-        
-        #content li:before {
-            display: inline-block;
-            content: "";
-            width: 30px;
-            height: 0;
-            border-top: 1px dotted #666;
-            z-index: 1;
-            vertical-align: middle;
-        }
-        
         #masklayerbg {
             display: none;
             position: fixed;
@@ -452,10 +417,34 @@
         <div class="col-md-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <a class="btn btn-link fullClick">全选</a> |
-                    <a class="btn btn-link nofullClick">取消全选</a>
+                    <a href="javascript:;" class="btn btn-link">全选</a>
+                    <a href="javascript:;" class="btn btn-link">取消全选</a>
                 </header>
-                <div class="panel-body" id="content"></div>
+                <div class="panel-body">
+                    <table class="table table-bordered text-center">
+                        <tr>
+                            <td><input type="checkbox" name="fullClick"></td>
+                            <td>ID</td>
+                            <td>名称</td>
+                            <td>链接</td>
+                            <td>描述</td>
+                            <td>排序</td>
+                            <td>隐藏</td>
+                        </tr>
+                        <?php if(!empty($data)): if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$info): $mod = ($i % 2 );++$i;?><tr>
+                                    <td><input type="checkbox" name="id" value="<?php echo ($info["id"]); ?>"></td>
+                                    <td><?php echo ($info["id"]); ?></td>
+                                    <td><?php if($info["is_last"] == 0): ?><a href="<?php echo U('index', array('pid' => $info['id']));?>"><?php echo ($info["name"]); ?></a><?php else: echo ($info["name"]); endif; ?></td>
+                                    <td><?php echo ($info["url"]); ?></td>
+                                    <td><?php echo ($info["description"]); ?></td>
+                                    <td><?php echo ($info["sort"]); ?></td>
+                                    <td>
+                                        <?php if($info["is_hide"] == 1): ?>是
+                                            <?php else: ?>否<?php endif; ?>
+                                    </td>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
+                    </table>
+                </div>
             </section>
         </div>
     </div>
@@ -491,7 +480,7 @@
 	
     <script type="text/javascript">
         $(function () {
-            fuc.init();
+            //fuc.init();
         });
     </script>
 

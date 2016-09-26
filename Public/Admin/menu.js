@@ -1,7 +1,7 @@
 var fuc = {
     config: {
         htmlStr: '',
-        test: 'test'
+        pid: 0
     },
     init: function () {
         this.renderTable();
@@ -10,65 +10,44 @@ var fuc = {
     handleData: function (data) {
         if (data) {
             var that = this;
-            that.config.htmlStr += '<ul>';
+
+            that.config.htmlStr += '<section class="panel">';
+            that.config.htmlStr += '<header class="panel-heading">';
+            that.config.htmlStr += '<a href="javascript:;" class="btn btn-link">全选</a> ';
+            that.config.htmlStr += '<a href="javascript:;" class="btn btn-link">取消全选</a>';
+            that.config.htmlStr += '</header>';
+            that.config.htmlStr += '<div class="panel-body">';
+            that.config.htmlStr += '<table class="table table-bordered text-center">';
+            that.config.htmlStr += '<tr>';
+            that.config.htmlStr += '<td><input type="checkbox" name="fullClick"></td>';
+            that.config.htmlStr += '<td>ID</td>';
+            that.config.htmlStr += '<td>名称</td>';
+            that.config.htmlStr += '<td>链接</td>';
+            that.config.htmlStr += '<td>描述</td>';
+            that.config.htmlStr += '<td>排序</td>';
+            that.config.htmlStr += '<td>隐藏</td>';
+            that.config.htmlStr += '</tr>';
             for (var i = 0; i < data.length; i++) {
+                that.config.htmlStr += '<tr>';
+                that.config.htmlStr += '<td><input type="checkbox" name="id" value="' + data[i]['id'] + '"></td>';
+                that.config.htmlStr += '<td>' + data[i]['id'] + '</td>';
                 if (parseInt(data[i]['is_last'])) {
-                    that.config.htmlStr += '<li class="clearfix">';
-                    that.config.htmlStr += '<a class="btn a_checkbox" href="javascript:;"><input type="checkbox" name="auth" value="' + parseInt(data[i]['id']) + '" />&nbsp;' + data[i]['name'] + '</a>';
-
-                    that.config.htmlStr += '<div class="col-lg-2 pull-right">';
-                    that.config.htmlStr += '<a class="btn btn-link pull-right statusClick">' + (parseInt(data[i]['status']) ? '禁用' : '启用') + '</a>';
-                    that.config.htmlStr += '<a class="btn btn-link pull-right hideClick">' + (parseInt(data[i]['is_hide']) ? '显示' : '隐藏') + '</a>';
-                    that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right deleteClick">删除</a>';
-                    that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right editClick">编辑</a>';
-                    that.config.htmlStr += '</div>';
-
-                    that.config.htmlStr += '<div class="col-lg-1 pull-right">';
-                    that.config.htmlStr += '<a class="btn text-muted">状态: ' + (parseInt(data[i]['status']) ? '启用' : '禁用') + ',' + (parseInt(data[i]['is_hide']) ? '隐藏' : '显示') + '</a>';
-                    that.config.htmlStr += '</div>';
-
-                    that.config.htmlStr += '<div class="col-lg-1 pull-right">';
-                    that.config.htmlStr += '<a class="btn text-muted">排序: ' + data[i]['sort'] + '</a>';
-                    that.config.htmlStr += '</div>';
-
-                    that.config.htmlStr += '<div class="col-lg-2 pull-right">';
-                    that.config.htmlStr += '<a class="btn text-muted">链接: ' + data[i]['url'] + '</a>';
-                    that.config.htmlStr += '</div>';
-
-                    that.config.htmlStr += '<div class="col-lg-3 pull-right">';
-                    that.config.htmlStr += '<a class="btn text-muted">描述: ' + data[i]['description'] + '</a>';
-                    that.config.htmlStr += '</div>';
-                } else {
-                    that.config.htmlStr += '<li class="clearfix"><a href="javascript:;" class="btn switchClick"><i class="fa fa-folder"></i>&nbsp;' + data[i]['name'] + '</a>';
-                    that.config.htmlStr += '<div class="col-lg-2 pull-right">';
-                    that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right addClick">增加</a>';
-                    if (parseInt(data[i]['pid'])) {
-                        if (!data[i]['list']) {
-                            that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right deleteClick">删除</a>';
-                        }
-                        that.config.htmlStr += '<a href="javascript:;" class="btn btn-link pull-right editClick">编辑</a>';
-                    }
-                    that.config.htmlStr += '</div>';
-
-                    if (parseInt(data[i]['pid'])) {
-                        that.config.htmlStr += '<div class="col-lg-7 pull-right">';
-                        that.config.htmlStr += '<a class="btn text-muted">描述: ' + data[i]['description'] + '</a>';
-                        that.config.htmlStr += '</div>';
-                    }
+                    that.config.htmlStr += '<td> ' + data[i]['name'] + '</td>';
                 }
-
-                that.config.htmlStr += '<input type="hidden" name="id" value="' + parseInt(data[i]['id']) + '">';
-                that.config.htmlStr += '<input type="hidden" name="version" value="' + parseInt(data[i]['version']) + '">';
-                that.config.htmlStr += '</li>';
-                if (data[i]['is_last'] == 0) {
-                    if (data[i]['list']) {
-                        that.handleData(data[i]['list']);
-                    } else {
-                        that.config.htmlStr += '<ul><li>还没有内容，快去添加吧</li></ul>';
-                    }
+                else {
+                    that.config.htmlStr += '<td><a href="javascript:;" class="openClick">' + data[i]['name'] + '</a></td>';
                 }
+                that.config.htmlStr += '<td>' + data[i]['url'] + '</td>';
+                that.config.htmlStr += '<td>' + data[i]['description'] + '</td>';
+                that.config.htmlStr += '<td>' + data[i]['sort'] + '</td>';
+                that.config.htmlStr += '<td>' + ((data[i]['is_hide'] == 1) ? '是' : '否') + '</td>';
+                that.config.htmlStr += '</tr>';
             }
-            that.config.htmlStr += '</ul>';
+            that.config.htmlStr += '</table>';
+            that.config.htmlStr += '</div>';
+            that.config.htmlStr += '</section>';
+            that.config.htmlStr += '<div id="masklayerbg"></div>';
+            that.config.htmlStr += '<div id="masklayershow"></div>';
             return that.config.htmlStr;
         }
     },
@@ -353,19 +332,30 @@ var fuc = {
                 that.hideMask();
             }
         });
+
+        // 取消事件
+        $(document).on('click', '.openClick', function () {
+            that.config.pid = $(this).parent().parent().find("[name='id']").val();
+            that.renderTable();
+        });
+
+        window.onunload=function (){
+            console.log(that.config.pid);
+            var ev = e || window.event;//获取event对象 
+            ev.preventDefault();
+        }
     },
     renderTable: function () {
         var that = this;
         $.ajax({
             type: "post",
-            url: "/Admin/Menu/getAllInfo.html",
+            url: "/Admin/Menu/getAllInfoByPid.html",
+            data: { pid: that.config.pid },
             cache: false,
             success: function (data) {
-                if (data.info.length) {
+                if (data.status) {
                     that.config.htmlStr = '';
-                    var html = that.handleData(data.info);
-                    html += '<div id="masklayerbg"></div>';
-                    html += '<div id="masklayershow"></div>';
+                    var html = that.handleData(data.info.info);
                     $('#content').empty().append(html);
                 }
             },
