@@ -10,6 +10,10 @@ class MenuModel extends Model{
         return $this->where($map)->select();
     }
     
+    public function getInfoById($map){
+        return $this->where($map)->select();
+    }
+    
     public function getFieldById($field,$map){
         return $this->field($field)->where($map)->select();
     }
@@ -17,5 +21,9 @@ class MenuModel extends Model{
     public function addInfo($map){
         return $this->data($map)->add();
     }
-
+    
+    public function updateInfoById($map){
+        return $this->data($map)->save();
+    }
+    
 }

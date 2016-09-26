@@ -25,10 +25,38 @@ class MenuController extends Controller{
         }
     }
     
+    public function getInfoById(){
+        if(IS_POST){
+            try{
+                $result = D('Menu','Logic')->getInfoById($_POST);
+                if($result['code']){
+                    $this->success($result['info']);
+                }
+            }catch(\Exception $e){
+                $this->error("系统异常");
+            }
+        }
+    }
+    
     public function addInfo(){
         if(IS_POST){
             try {
                 $result = D('Menu','Logic')->addInfo($_POST);
+                if($result['code']){
+                    $this->success($result['msg']);
+                }else{
+                    $this->error($result['msg']);
+                }
+            } catch (\Exception $e) {
+                $this->error("系统异常");
+            }
+        }
+    }
+    
+    public function updateInfoById(){
+        if(IS_POST){
+            try {
+                $result = D('Menu','Logic')->updateInfoById($_POST);
                 if($result['code']){
                     $this->success($result['msg']);
                 }else{

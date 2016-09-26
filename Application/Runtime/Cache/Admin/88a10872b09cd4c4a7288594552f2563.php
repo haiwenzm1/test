@@ -28,10 +28,6 @@
             padding-left: 0;
         }
         
-        #content li+ul {
-            display: none;
-        }
-        
         #content ul:before {
             width: 1px;
             z-index: 1;
