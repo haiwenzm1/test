@@ -42,29 +42,50 @@
                 <div class="panel-body">
                     <table class="table table-bordered text-center">
                         <tr>
-                            <td><input type="checkbox" name="fullClick"></td>
+                            <td><input type="checkbox" class="fullClick"></td>
                             <td>ID</td>
                             <td>名称</td>
                             <td>链接</td>
                             <td>描述</td>
                             <td>排序</td>
                             <td>隐藏</td>
+                            <td>状态</td>
+                            <td>操作</td>
                         </tr>
                         <notempty name="data">
                             <volist name="data" id="info">
                                 <tr>
-                                    <td><input type="checkbox" name="id" value="{$info.id}"></td>
+                                    <td>
+                                        <if condition="$info.is_last eq 0">
+                                            <input type="checkbox" name="id" disabled="disabled" value="{$info.id}">
+                                            <else />
+                                            <input type="checkbox" name="id" class="lastmenu" value="{$info.id}">
+                                        </if>
+                                    </td>
                                     <td>{$info.id}</td>
                                     <td>
-                                        <if condition="$info.is_last eq 0"><a href="{:U('index', array('pid' => $info['id']))}">{$info.name}</a>
+                                        <if condition="$info.is_last eq 0"><a href="{:U('index', array('pid' => $info['id']))}" class="switchClick">{$info.name}</a>
                                             <else />{$info.name}</if>
                                     </td>
                                     <td>{$info.url}</td>
                                     <td>{$info.description}</td>
                                     <td>{$info.sort}</td>
                                     <td>
-                                        <if condition="$info.is_hide eq 1">是
-                                            <else />否</if>
+                                        <if condition="$info.is_hide eq 1"> 是
+                                            <else /> 否
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <if condition="$info.status eq 1"> 正常
+                                            <else /> 禁止
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="text-primary editClick">编辑</a>
+                                        <if condition="$info['pid'] neq 0">
+                                            <a href="javascript:;" class="text-primary">删除</a>
+                                        </if>
+                                        <a href="javascript:;" class="text-primary">隐藏</a>
                                     </td>
                                 </tr>
                             </volist>
@@ -74,6 +95,8 @@
             </section>
         </div>
     </div>
+    <div id="masklayerbg"></div>
+    <div id="masklayershow"></div>
 </block>
 
 <block name="js">
@@ -84,7 +107,7 @@
 <block name="script">
     <script type="text/javascript">
         $(function () {
-            //fuc.init();
+            fuc.init();
         });
     </script>
 </block>

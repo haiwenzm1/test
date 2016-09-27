@@ -63,7 +63,7 @@ class MenuLogic extends Model{
             $map['url'] = $data['url'];
             $map['description'] = $data['description'];
             $map['sort'] = intval($data['sort']);
-            $map['is_hide'] = intval($data['is_hide']);
+            $map['is_hide'] = intval($data['hide']);
             $map['status'] = intval($data['status']);
             $map['version'] = intval($data['version'])+1;
             $map['update_time'] = time();

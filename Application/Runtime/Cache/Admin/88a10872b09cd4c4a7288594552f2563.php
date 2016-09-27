@@ -423,24 +423,42 @@
                 <div class="panel-body">
                     <table class="table table-bordered text-center">
                         <tr>
-                            <td><input type="checkbox" name="fullClick"></td>
+                            <td><input type="checkbox" class="fullClick"></td>
                             <td>ID</td>
                             <td>名称</td>
                             <td>链接</td>
                             <td>描述</td>
                             <td>排序</td>
                             <td>隐藏</td>
+                            <td>状态</td>
+                            <td>操作</td>
                         </tr>
                         <?php if(!empty($data)): if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$info): $mod = ($i % 2 );++$i;?><tr>
-                                    <td><input type="checkbox" name="id" value="<?php echo ($info["id"]); ?>"></td>
+                                    <td>
+                                        <?php if($info["is_last"] == 0): ?><input type="checkbox" name="id" disabled="disabled" value="<?php echo ($info["id"]); ?>">
+                                            <?php else: ?>
+                                            <input type="checkbox" name="id" class="lastmenu" value="<?php echo ($info["id"]); ?>"><?php endif; ?>
+                                    </td>
                                     <td><?php echo ($info["id"]); ?></td>
-                                    <td><?php if($info["is_last"] == 0): ?><a href="<?php echo U('index', array('pid' => $info['id']));?>"><?php echo ($info["name"]); ?></a><?php else: echo ($info["name"]); endif; ?></td>
+                                    <td>
+                                        <?php if($info["is_last"] == 0): ?><a href="<?php echo U('index', array('pid' => $info['id']));?>" class="switchClick"><?php echo ($info["name"]); ?></a>
+                                            <?php else: echo ($info["name"]); endif; ?>
+                                    </td>
                                     <td><?php echo ($info["url"]); ?></td>
                                     <td><?php echo ($info["description"]); ?></td>
                                     <td><?php echo ($info["sort"]); ?></td>
                                     <td>
                                         <?php if($info["is_hide"] == 1): ?>是
-                                            <?php else: ?>否<?php endif; ?>
+                                            <?php else: ?> 否<?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if($info["status"] == 1): ?>正常
+                                            <?php else: ?> 禁止<?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="text-primary editClick">编辑</a>
+                                        <?php if($info['pid'] != 0): ?><a href="javascript:;" class="text-primary">删除</a><?php endif; ?>
+                                        <a href="javascript:;" class="text-primary">隐藏</a>
                                     </td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                     </table>
@@ -448,6 +466,8 @@
             </section>
         </div>
     </div>
+    <div id="masklayerbg"></div>
+    <div id="masklayershow"></div>
 
 			</div>
 			<!--body wrapper end-->
@@ -480,7 +500,7 @@
 	
     <script type="text/javascript">
         $(function () {
-            //fuc.init();
+            fuc.init();
         });
     </script>
 

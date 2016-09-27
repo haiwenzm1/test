@@ -1,55 +1,53 @@
 var fuc = {
-    config: {
-        htmlStr: '',
-        pid: 0
-    },
     init: function () {
-        this.renderTable();
         this.bindEvent();
     },
-    handleData: function (data) {
-        if (data) {
-            var that = this;
+    bindEvent: function () {
+        var that = this;
 
-            that.config.htmlStr += '<section class="panel">';
-            that.config.htmlStr += '<header class="panel-heading">';
-            that.config.htmlStr += '<a href="javascript:;" class="btn btn-link">全选</a> ';
-            that.config.htmlStr += '<a href="javascript:;" class="btn btn-link">取消全选</a>';
-            that.config.htmlStr += '</header>';
-            that.config.htmlStr += '<div class="panel-body">';
-            that.config.htmlStr += '<table class="table table-bordered text-center">';
-            that.config.htmlStr += '<tr>';
-            that.config.htmlStr += '<td><input type="checkbox" name="fullClick"></td>';
-            that.config.htmlStr += '<td>ID</td>';
-            that.config.htmlStr += '<td>名称</td>';
-            that.config.htmlStr += '<td>链接</td>';
-            that.config.htmlStr += '<td>描述</td>';
-            that.config.htmlStr += '<td>排序</td>';
-            that.config.htmlStr += '<td>隐藏</td>';
-            that.config.htmlStr += '</tr>';
-            for (var i = 0; i < data.length; i++) {
-                that.config.htmlStr += '<tr>';
-                that.config.htmlStr += '<td><input type="checkbox" name="id" value="' + data[i]['id'] + '"></td>';
-                that.config.htmlStr += '<td>' + data[i]['id'] + '</td>';
-                if (parseInt(data[i]['is_last'])) {
-                    that.config.htmlStr += '<td> ' + data[i]['name'] + '</td>';
-                }
-                else {
-                    that.config.htmlStr += '<td><a href="javascript:;" class="openClick">' + data[i]['name'] + '</a></td>';
-                }
-                that.config.htmlStr += '<td>' + data[i]['url'] + '</td>';
-                that.config.htmlStr += '<td>' + data[i]['description'] + '</td>';
-                that.config.htmlStr += '<td>' + data[i]['sort'] + '</td>';
-                that.config.htmlStr += '<td>' + ((data[i]['is_hide'] == 1) ? '是' : '否') + '</td>';
-                that.config.htmlStr += '</tr>';
+        // 全选
+        $(document).on('click', '.fullClick', function () {
+            $('.lastmenu').prop('checked', $(this).prop('checked'));
+        });
+
+        // 删除
+        $(document).on('click', '.deleteClick', function () {
+            if (confirm("确定删除吗")) {
+                that.deleteClick(this);
             }
-            that.config.htmlStr += '</table>';
-            that.config.htmlStr += '</div>';
-            that.config.htmlStr += '</section>';
-            that.config.htmlStr += '<div id="masklayerbg"></div>';
-            that.config.htmlStr += '<div id="masklayershow"></div>';
-            return that.config.htmlStr;
-        }
+        });
+
+        // 增加
+        $(document).on('click', '.addClick', function () {
+            that.addClick(this);
+        });
+
+        // 编辑
+        $(document).on('click', '.editClick', function () {
+            that.editClick(this);
+        });
+
+        // 保存
+        $(document).on('click', '.saveClick', function () {
+            that.saveClick(this);
+        });
+
+        // 更新
+        $(document).on('click', '.updateClick', function () {
+            that.updateClick(this);
+        });
+
+        // 禁用或启用
+        $(document).on('click', '.statusClick', function () {
+            that.statusClick(this);
+        });
+
+        // 取消事件
+        $(document).on('click', '.cancleClick', function () {
+            if (confirm("确定取消吗")) {
+                that.hideMask();
+            }
+        });
     },
     addClick: function (e) {
         var that = this;
@@ -209,8 +207,8 @@ var fuc = {
                 $(e).attr('disabled', false);
                 alert(data.info);
                 if (data.status) {
-                    that.hideMask(this);
-                    that.renderTable();
+                    that.hideMask();
+                    window.location.href = window.location.href;
                 }
             },
             error: function () {
@@ -265,103 +263,5 @@ var fuc = {
     showMask: function (html) {
         $('#masklayerbg').empty().show();
         $('#masklayershow').empty().append(html).show();
-    },
-    bindEvent: function () {
-        var that = this;
-
-        // 选中
-        $(document).on('click', '.a_checkbox', function () {
-            $(this).find('[type=checkbox]').prop('checked', !$(this).find('[type=checkbox]').prop('checked'));
-        });
-
-        // 切换
-        $(document).on('click', '.switchClick', function () {
-            if ($(this).parent().next('ul').is(":hidden")) {
-                $(this).parent().next('ul').show();
-            } else {
-                $(this).parent().next('ul').hide();
-            }
-        });
-
-        // 全选
-        $(document).on('click', '.fullClick', function () {
-            $("#content").find('[type=checkbox]').prop('checked', true);
-            $("#content").find('ul').show();
-        });
-
-        // 取消全选
-        $(document).on('click', '.nofullClick', function () {
-            $("#content").find('[type=checkbox]').prop('checked', false);
-        });
-
-        // 删除
-        $(document).on('click', '.deleteClick', function () {
-            if (confirm("确定删除吗")) {
-                that.deleteClick(this);
-            }
-        });
-
-        // 增加
-        $(document).on('click', '.addClick', function () {
-            that.addClick(this);
-        });
-
-        // 编辑
-        $(document).on('click', '.editClick', function () {
-            that.editClick(this);
-        });
-
-        // 保存
-        $(document).on('click', '.saveClick', function () {
-            that.saveClick(this);
-        });
-
-        // 更新
-        $(document).on('click', '.updateClick', function () {
-            that.updateClick(this);
-        });
-
-        // 禁用或启用
-        $(document).on('click', '.statusClick', function () {
-            that.statusClick(this);
-        });
-
-        // 取消事件
-        $(document).on('click', '.cancleClick', function () {
-            if (confirm("确定取消吗")) {
-                that.hideMask();
-            }
-        });
-
-        // 取消事件
-        $(document).on('click', '.openClick', function () {
-            that.config.pid = $(this).parent().parent().find("[name='id']").val();
-            that.renderTable();
-        });
-
-        window.onunload=function (){
-            console.log(that.config.pid);
-            var ev = e || window.event;//获取event对象 
-            ev.preventDefault();
-        }
-    },
-    renderTable: function () {
-        var that = this;
-        $.ajax({
-            type: "post",
-            url: "/Admin/Menu/getAllInfoByPid.html",
-            data: { pid: that.config.pid },
-            cache: false,
-            success: function (data) {
-                if (data.status) {
-                    that.config.htmlStr = '';
-                    var html = that.handleData(data.info.info);
-                    $('#content').empty().append(html);
-                }
-            },
-            error: function () {
-                alert("网络出错,请重试");
-            }
-        });
     }
 }
