@@ -12,16 +12,16 @@ class MenuLogic extends Model{
         return $result;
     }
     
-    public function getAllInfoByPid($data){
+    public function getAllInfoByPid($pid){
         $map = array();
-        $map['pid'] = intval($data['pid']);
+        $map['pid'] = intval($pid);
         $result = D('Menu')->getAllInfo($map);
         return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
     }
     
-    public function getInfoById($data){
+    public function getInfoById($id){
         $map = array();
-        $map['id'] = $data['id'];
+        $map['id'] = $id;
         $result = D('Menu')->getInfoById($map);
         $map['id'] = $result[0]['pid'];
         $pname = D('Menu')->getFieldById('name',$map);
@@ -29,6 +29,13 @@ class MenuLogic extends Model{
         return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
     }
     
+    public function getNameById($id){
+        $map = array();
+        $map['id'] =  $id;
+        $result = D('Menu')->getFieldById('name',$map);
+        return array('code'=> 1, 'msg'=>'操作成功', 'info'=> $result);
+    }
+
     public function addInfo($data){
         $map = array();
         $map['id'] = $data['pid'];

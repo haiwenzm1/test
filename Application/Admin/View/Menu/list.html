@@ -1,43 +1,14 @@
 <extend name="Public/base" />
 
-<block name="css"></block>
-
-<block name="style">
-    <style type="text/css">
-        #masklayerbg {
-            display: none;
-            position: fixed;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: #777;
-            z-index: 1001;
-            -moz-opacity: 0.7;
-            opacity: .70;
-            filter: alpha(opacity=70);
-        }
-        
-        #masklayershow {
-            display: none;
-            position: fixed;
-            top: 1%;
-            left: 22%;
-            width: 56%;
-            height: 98%;
-            z-index: 1002;
-            overflow: auto;
-        }
-    </style>
-</block>
-
 <block name="body">
     <div class="row">
         <div class="col-md-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <a href="javascript:;" class="btn btn-link">全选</a>
-                    <a href="javascript:;" class="btn btn-link">取消全选</a>
+                    <a href="javascript:window.history.go(-1);" class="btn btn-link">排序</a>
+                    <if condition="$id">
+                        <a href="javascript:window.history.go(-1);" class="btn btn-link pull-right">返回</a>
+                    </if>
                 </header>
                 <div class="panel-body">
                     <table class="table table-bordered text-center">
@@ -81,7 +52,7 @@
                                         </if>
                                     </td>
                                     <td>
-                                        <a href="javascript:;" class="text-primary editClick">编辑</a>
+                                        <a href="{:U('edit',array('id'=>$info['id']))}" class="text-primary">编辑</a>
                                         <if condition="$info['pid'] neq 0">
                                             <a href="javascript:;" class="text-primary">删除</a>
                                         </if>
@@ -95,19 +66,34 @@
             </section>
         </div>
     </div>
-    <div id="masklayerbg"></div>
-    <div id="masklayershow"></div>
-</block>
-
-<block name="js">
-    <script src="/Public/Javascript/vertify.js"></script>
-    <script src="/Public/Admin/menu.js"></script>
 </block>
 
 <block name="script">
     <script type="text/javascript">
-        $(function () {
-            fuc.init();
+        $(function(){
+            $(document).on('click', '.fullClick', function () {
+                $('.lastmenu').prop('checked', $(this).prop('checked'));
+            });
+
+            $(document).on('click','.deleteClick',function(){
+                $(e).attr('disabled', true);
+                $.ajax({
+                    type: 'post',
+                    data: { id: $(e).parent().find('[name=id]').val(), version: $(e).parent().find('[name=version]').val() },
+                    url: "{:U('deleteInfoById')}",
+                    cache: false,
+                    success: function (data) {
+                        $(e).attr('disabled', false);
+                        alert(data.info);
+                        if (data.status) {
+                            that.renderTable();
+                        }
+                    },
+                    error: function () {
+                        alert("网络出错,请重试");
+                    }
+                });
+            });
         });
     </script>
 </block>

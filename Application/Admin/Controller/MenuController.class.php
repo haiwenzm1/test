@@ -14,55 +14,32 @@ class MenuController extends Controller{
     }
     
     public function index(){
-        $this->meta_title = '菜单列表';
-        $result = D('Menu','Logic')->getAllInfoByPid($_GET);
-        $this->assign("data",$result['info']);
-        $this->display('list');
-    }
-    
-    public function getAllInfo(){
-        if(IS_POST){
-            $datas = D('Menu','Logic')->getAllInfo();
-            $this->success($datas);
-        }
-    }
-    
-    public function getAllInfoByPid(){
-        if(IS_POST){
-            $datas = D('Menu','Logic')->getAllInfoByPid($_POST);
-            $this->success($datas);
-        }
-    }
-    
-    public function getInfoById(){
-        if(IS_POST){
-            try{
-                $result = D('Menu','Logic')->getInfoById($_POST);
-                if($result['code']){
-                    $this->success($result['info']);
-                }
-            }catch(\Exception $e){
-                $this->error("系统异常");
+        if(IS_GET){
+            $id = intval($_GET['pid']);
+            
+            if(empty($id)){
+                $this->meta_title = '菜单列表';
+            }else{
+                $result = D('Menu','Logic')->getNameById($id);
+                $this->meta_title = $result['info'][0]['name'].'列表';
             }
+            
+            $this->assign('id',$id);
+            $result = D('Menu','Logic')->getAllInfoByPid($id);
+            $this->assign('data',$result['info']);
+            $this->display('list');
         }
     }
     
-    public function addInfo(){
-        if(IS_POST){
-            try {
-                $result = D('Menu','Logic')->addInfo($_POST);
-                if($result['code']){
-                    $this->success($result['msg']);
-                }else{
-                    $this->error($result['msg']);
-                }
-            } catch (\Exception $e) {
-                $this->error("系统异常");
-            }
+    public function edit(){
+        if(IS_GET){
+            $id = intval($_GET['id']);
+            $result = D('Menu','Logic')->getInfoById($id);
+            $this->meta_title = '编辑菜单';
+            $this->assign('data',$result['info'][0]);
+            $this->display();
         }
-    }
-    
-    public function updateInfoById(){
+        
         if(IS_POST){
             try {
                 $result = D('Menu','Logic')->updateInfoById($_POST);
@@ -72,7 +49,7 @@ class MenuController extends Controller{
                     $this->error($result['msg']);
                 }
             } catch (\Exception $e) {
-                $this->error("系统异常");
+                $this->error('系统异常');
             }
         }
     }

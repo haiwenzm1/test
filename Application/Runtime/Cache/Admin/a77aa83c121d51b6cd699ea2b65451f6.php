@@ -390,51 +390,78 @@
         <div class="col-md-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <a href="javascript:window.history.go(-1);" class="btn btn-link">排序</a>
-                    <?php if($id): ?><a href="javascript:window.history.go(-1);" class="btn btn-link pull-right">返回</a><?php endif; ?>
+                    <?php echo ($data["name"]); ?>
                 </header>
                 <div class="panel-body">
-                    <table class="table table-bordered text-center">
-                        <tr>
-                            <td><input type="checkbox" class="fullClick"></td>
-                            <td>ID</td>
-                            <td>名称</td>
-                            <td>链接</td>
-                            <td>描述</td>
-                            <td>排序</td>
-                            <td>隐藏</td>
-                            <td>状态</td>
-                            <td>操作</td>
-                        </tr>
-                        <?php if(!empty($data)): if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$info): $mod = ($i % 2 );++$i;?><tr>
-                                    <td>
-                                        <?php if($info["is_last"] == 0): ?><input type="checkbox" name="id" disabled="disabled" value="<?php echo ($info["id"]); ?>">
-                                            <?php else: ?>
-                                            <input type="checkbox" name="id" class="lastmenu" value="<?php echo ($info["id"]); ?>"><?php endif; ?>
-                                    </td>
-                                    <td><?php echo ($info["id"]); ?></td>
-                                    <td>
-                                        <?php if($info["is_last"] == 0): ?><a href="<?php echo U('index', array('pid' => $info['id']));?>" class="switchClick"><?php echo ($info["name"]); ?></a>
-                                            <?php else: echo ($info["name"]); endif; ?>
-                                    </td>
-                                    <td><?php echo ($info["url"]); ?></td>
-                                    <td><?php echo ($info["description"]); ?></td>
-                                    <td><?php echo ($info["sort"]); ?></td>
-                                    <td>
-                                        <?php if($info["is_hide"] == 1): ?>是
-                                            <?php else: ?> 否<?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <?php if($info["status"] == 1): ?>正常
-                                            <?php else: ?> 禁止<?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a href="<?php echo U('edit',array('id'=>$info['id']));?>" class="text-primary">编辑</a>
-                                        <?php if($info['pid'] != 0): ?><a href="javascript:;" class="text-primary">删除</a><?php endif; ?>
-                                        <a href="javascript:;" class="text-primary">隐藏</a>
-                                    </td>
-                                </tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-                    </table>
+                    <form class="form-horizontal" id="addForm">
+                        <div class="form-group"><label class="col-lg-2 col-sm-2 control-label">分组</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" placeholder="<?php echo ((isset($data["pname"]) && ($data["pname"] !== ""))?($data["pname"]):'根目录'); ?>" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-lg-2 col-sm-2 control-label">名称</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="name" vertify="string_1_20" class="form-control" value="<?php echo ($data["name"]); ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label">链接</label>
+                            <div class="col-sm-10">
+                                <?php if($data["is_last"] == 1): ?><input type="text" class="form-control" name="url" vertify="string_1_100" value="<?php echo ($data["url"]); ?>">
+                                    <?php else: ?>
+                                    <input type="text" class="form-control" name="url" vertify="string_0_100" value="<?php echo ($data["url"]); ?>"><?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea rows="6" class="form-control" name="description" vertify="string_0_500"><?php echo ($data["description"]); ?></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-lg-2 col-sm-2 control-label">排序</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="sort" vertify="int_0_11_n_n" class="form-control" value="<?php echo ($data["sort"]); ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label col-lg-2">是否显示在左侧</label>
+                            <div class="col-lg-10">
+                                <?php if($data["is_hide"] == 1): ?><label class="checkbox-inline"><input name="hide" type="radio" value="1" checked="checked">隐藏</label>
+                                    <?php else: ?>
+                                    <label class="checkbox-inline"><input name="hide" type="radio" value="1">隐藏</label><?php endif; ?>
+                                <?php if($data["is_hide"] == 0): ?><label class="checkbox-inline"><input name="hide" type="radio" value="0" checked="checked">显示</label>
+                                    <?php else: ?>
+                                    <label class="checkbox-inline"><input name="hide" type="radio" value="0">显示</label><?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label col-lg-2">状态</label>
+                            <div class="col-lg-10">
+                                <?php if($data["status"] == 1): ?><label class="checkbox-inline"><input name="status" type="radio" value="1" checked="checked">启用</label>
+                                    <?php else: ?>
+                                    <label class="checkbox-inline"><input name="status" type="radio" value="1">启用</label><?php endif; ?>
+                                <?php if($data["status"] == 0): ?><label class="checkbox-inline"><input name="status" type="radio" value="0" checked="checked">禁止</label>
+                                    <?php else: ?>
+                                    <label class="checkbox-inline"><input name="status" type="radio" value="0">禁止</label><?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="id" value="<?php echo ($data["id"]); ?>">
+                            <input type="hidden" class="form-control" name="version" value="<?php echo ($data["version"]); ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-1">
+                                <a href="javascript:;" class="btn btn-success ajax-post" target-form="addForm" target-url="<?php echo U('edit');?>">保存</a>
+                            </div>
+                            <div class="col-lg-1">
+                                <a href="javascript:window.history.go(-1);" class="btn btn-primary">取消</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </section>
         </div>
@@ -461,14 +488,42 @@
 	<script src="/Public/AdminEx/js/jquery.nicescroll.js"></script>
 
 	
+    <script src="/Public/Javascript/vertify.js" type="text/javascript"></script>
+
 
 	<!--common scripts for all pages-->
 	<script src="/Public/AdminEx/js/scripts.js"></script>
 	
 	
     <script type="text/javascript">
-        $(document).on('click', '.fullClick', function () {
-            $('.lastmenu').prop('checked', $(this).prop('checked'));
+        $(function(){
+            Vertify('addForm', 0);
+
+            $(document).on('click','.ajax-post',function(){
+                var e = this;
+                $(e).attr('disabled', true);
+                if (!Vertify($(e).attr('target-form'), 1)) {
+                    $(e).attr('disabled', false);
+                    return;
+                }
+                $.ajax({
+                    type: 'post',
+                    data: $('#' + $(e).attr('target-form')).serialize(),
+                    url: $(e).attr('target-url'),
+                    cache: false,
+                    success: function (data) {
+                        $(e).attr('disabled', false);
+                        alert(data.info);
+                        if (data.status) {
+                            //window.history.back(-1);
+                            window.location.href = document.referrer;
+                        }
+                    },
+                    error: function () {
+                        alert('网络出错,请重试');
+                    }
+                });
+            });
         });
     </script>
 
