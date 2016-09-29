@@ -515,7 +515,6 @@
                         $(e).attr('disabled', false);
                         alert(data.info);
                         if (data.status) {
-                            //window.history.back(-1);
                             window.location.href = document.referrer;
                         }
                     },

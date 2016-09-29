@@ -389,15 +389,14 @@
     <div class="row">
         <div class="col-md-12">
             <section class="panel">
-                <header class="panel-heading">
-                    <a href="javascript:window.history.go(-1);" class="btn btn-link">排序</a>
-                    <?php if($id): ?><a href="javascript:window.history.go(-1);" class="btn btn-link pull-right">返回</a><?php endif; ?>
-                </header>
+                <?php if($id): ?><header class="panel-heading">
+                        <a href="<?php echo U('add', array('pid'=>$id, 'last'=>1));?>" class="btn btn-link">增加菜单</a>|
+                        <a href="<?php echo U('add', array('pid'=>$id, 'last'=>0));?>" class="btn btn-link">增加菜单组</a>
+                        <a href="javascript:window.history.go(-1);" class="btn btn-link pull-right">返回</a>
+                    </header><?php endif; ?>
                 <div class="panel-body">
                     <table class="table table-bordered text-center">
                         <tr>
-                            <td><input type="checkbox" class="fullClick"></td>
-                            <td>ID</td>
                             <td>名称</td>
                             <td>链接</td>
                             <td>描述</td>
@@ -408,12 +407,6 @@
                         </tr>
                         <?php if(!empty($data)): if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$info): $mod = ($i % 2 );++$i;?><tr>
                                     <td>
-                                        <?php if($info["is_last"] == 0): ?><input type="checkbox" name="id" disabled="disabled" value="<?php echo ($info["id"]); ?>">
-                                            <?php else: ?>
-                                            <input type="checkbox" name="id" class="lastmenu" value="<?php echo ($info["id"]); ?>"><?php endif; ?>
-                                    </td>
-                                    <td><?php echo ($info["id"]); ?></td>
-                                    <td>
                                         <?php if($info["is_last"] == 0): ?><a href="<?php echo U('index', array('pid' => $info['id']));?>" class="switchClick"><?php echo ($info["name"]); ?></a>
                                             <?php else: echo ($info["name"]); endif; ?>
                                     </td>
@@ -421,17 +414,20 @@
                                     <td><?php echo ($info["description"]); ?></td>
                                     <td><?php echo ($info["sort"]); ?></td>
                                     <td>
-                                        <?php if($info["is_hide"] == 1): ?>是
-                                            <?php else: ?> 否<?php endif; ?>
+                                        <a href="javascript:;" class="text-primary ajax-get" target-url="<?php echo U('edit', array('model' => 'hide', 'id'=> $info['id'], 'version' => $info['version']));?>">
+                                            <?php if($info["is_hide"] == 1): ?>是
+                                                <?php else: ?> 否<?php endif; ?>
+                                        </a>
                                     </td>
                                     <td>
-                                        <?php if($info["status"] == 1): ?>正常
-                                            <?php else: ?> 禁止<?php endif; ?>
+                                        <a href="javascript:;" class="text-primary ajax-get" target-url="<?php echo U('edit', array('model' => 'status', 'id' => $info['id'], 'version' => $info['version']));?>">
+                                            <?php if($info["status"] == 1): ?>正常
+                                                <?php else: ?> 禁止<?php endif; ?>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="<?php echo U('edit',array('id'=>$info['id']));?>" class="text-primary">编辑</a>
-                                        <?php if($info['pid'] != 0): ?><a href="javascript:;" class="text-primary">删除</a><?php endif; ?>
-                                        <a href="javascript:;" class="text-primary">隐藏</a>
+                                        <a href="<?php echo U('edit',array('model' => 'info', 'id' => $info['id']));?>" class="text-primary">编辑</a>
+                                        <?php if($info['pid'] != 0): ?><a href="javascript:;" class="text-primary ajax-get" target-url="<?php echo U('edit', array('model' => 'delete', 'id' => $info['id'], 'version' => $info['version']));?>">删除</a><?php endif; ?>
                                     </td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                     </table>
@@ -467,8 +463,26 @@
 	
 	
     <script type="text/javascript">
-        $(document).on('click', '.fullClick', function () {
-            $('.lastmenu').prop('checked', $(this).prop('checked'));
+        $(function(){
+            $(document).on('click','.ajax-get',function(){
+                var e = this;
+                $(e).attr('disabled', true);
+                $.ajax({
+                    type: 'get',
+                    url: $(e).attr('target-url'),
+                    cache: false,
+                    success: function (data) {
+                        $(e).attr('disabled', false);
+                        alert(data.info);
+                        if (data.status) {
+                            window.location.href = window.location.href;
+                        }
+                    },
+                    error: function () {
+                        alert("网络出错,请重试");
+                    }
+                });
+            });
         });
     </script>
 

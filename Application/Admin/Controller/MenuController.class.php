@@ -31,13 +31,85 @@ class MenuController extends Controller{
         }
     }
     
+    public function add(){
+        if(IS_GET){
+            $id = intval($_GET['pid']);
+            $last = intval($_GET['last']);
+            $result = D('Menu','Logic')->getNameById($id);
+            
+            if(empty($last)){
+                $this->meta_title = '增加菜单组';
+            }else{
+                $this->meta_title = '增加菜单';
+            }
+            $this->assign('id',$id);
+            $this->assign('last',$last);
+            $this->assign('classname',$result['info'][0]['name']);
+            $this->display();
+        }
+        
+        if(IS_POST){
+            try {
+                $result = D('Menu','Logic')->addInfo($_POST);
+                if($result['code']){
+                    $this->success($result['msg']);
+                }else{
+                    $this->error($result['msg']);
+                }
+            } catch (\Exception $e) {
+                $this->error('系统异常');
+            }
+        }
+    }
+    
     public function edit(){
         if(IS_GET){
-            $id = intval($_GET['id']);
-            $result = D('Menu','Logic')->getInfoById($id);
-            $this->meta_title = '编辑菜单';
-            $this->assign('data',$result['info'][0]);
-            $this->display();
+            if(trim($_GET['model']) == 'hide'){
+                try {
+                    $result = D('Menu','Logic')->updateIsHideById($_GET);
+                    if($result['code']){
+                        $this->success($result['msg']);
+                    }else{
+                        $this->error($result['msg']);
+                    }
+                } catch (\Exception $e) {
+                    $this->error('系统异常');
+                }
+            }
+            
+            if(trim($_GET['model']) == 'delete'){
+                try {
+                    $result = D('Menu','Logic')->updateIsDeleteById($_GET);
+                    if($result['code']){
+                        $this->success($result['msg']);
+                    }else{
+                        $this->error($result['msg']);
+                    }
+                } catch (\Exception $e) {
+                    $this->error('系统异常');
+                }
+            }
+            
+            if(trim($_GET['model']) == 'status'){
+                try {
+                    $result = D('Menu','Logic')->updateStatusById($_GET);
+                    if($result['code']){
+                        $this->success($result['msg']);
+                    }else{
+                        $this->error($result['msg']);
+                    }
+                } catch (\Exception $e) {
+                    $this->error('系统异常');
+                }
+            }
+            
+            if(trim($_GET['model']) == 'info'){
+                $id = intval($_GET['id']);
+                $result = D('Menu','Logic')->getInfoById($id);
+                $this->meta_title = '编辑菜单';
+                $this->assign('data',$result['info'][0]);
+                $this->display();
+            }
         }
         
         if(IS_POST){

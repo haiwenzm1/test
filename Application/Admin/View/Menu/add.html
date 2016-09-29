@@ -1,0 +1,109 @@
+<extend name="Public/base" />
+
+<block name="body">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    {$classname}
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="addForm">
+                        <div class="form-group"><label class="col-lg-2 col-sm-2 control-label">名称</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="name" vertify="string_1_20" class="form-control" placeholder="20字符以内">
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label">链接</label>
+                            <div class="col-sm-10">
+                                <if condition="$last eq 1">
+                                    <input type="text" class="form-control" name="url" vertify="string_1_100" value="{$data.url}">
+                                    <else />
+                                    <input type="text" class="form-control" name="url" vertify="string_0_100" value="{$data.url}">
+                                </if>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea rows="6" class="form-control" name="description" vertify="string_0_500" placeholder="500字符以内"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-lg-2 col-sm-2 control-label">排序</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="sort" vertify="int_0_11_n_n" class="form-control" value="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label col-lg-2">是否显示在左侧</label>
+                            <div class="col-lg-10">
+                                <label class="checkbox-inline"><input name="hide" type="radio" value="1" checked="checked">隐藏</label>
+                                <label class="checkbox-inline"><input name="hide" type="radio" value="0">显示</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label col-lg-2">状态</label>
+                            <div class="col-lg-10">
+                                <label class="checkbox-inline"><input name="status" type="radio" value="1" checked="checked">启用</label>
+                                <label class="checkbox-inline"><input name="status" type="radio" value="0">禁止</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="pid" value="{$id}">
+                            <input type="hidden" class="form-control" name="last" value="{$last}">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-1">
+                                <a href="javascript:;" class="btn btn-success ajax-post" target-form="addForm" target-url="{:U('add')}">保存</a>
+                            </div>
+                            <div class="col-lg-1">
+                                <a href="javascript:window.history.go(-1);" class="btn btn-primary">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</block>
+
+<block name="js">
+    <script src="/Public/Javascript/vertify.js" type="text/javascript"></script>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            Vertify('addForm', 0);
+
+            $(document).on('click','.ajax-post',function(){
+                var e = this;
+                $(e).attr('disabled', true);
+                if (!Vertify($(e).attr('target-form'), 1)) {
+                    $(e).attr('disabled', false);
+                    return;
+                }
+                $.ajax({
+                    type: 'post',
+                    data: $('#' + $(e).attr('target-form')).serialize(),
+                    url: $(e).attr('target-url'),
+                    cache: false,
+                    success: function (data) {
+                        $(e).attr('disabled', false);
+                        alert(data.info);
+                        if (data.status) {
+                            window.location.href = document.referrer;
+                        }
+                    },
+                    error: function () {
+                        alert('网络出错,请重试');
+                    }
+                });
+            });
+        });
+    </script>
+</block>

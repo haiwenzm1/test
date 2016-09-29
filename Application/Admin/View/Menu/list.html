@@ -4,17 +4,16 @@
     <div class="row">
         <div class="col-md-12">
             <section class="panel">
-                <header class="panel-heading">
-                    <a href="javascript:window.history.go(-1);" class="btn btn-link">排序</a>
-                    <if condition="$id">
+                <if condition="$id">
+                    <header class="panel-heading">
+                        <a href="{:U('add', array('pid'=>$id, 'last'=>1))}" class="btn btn-link">增加菜单</a>|
+                        <a href="{:U('add', array('pid'=>$id, 'last'=>0))}" class="btn btn-link">增加菜单组</a>
                         <a href="javascript:window.history.go(-1);" class="btn btn-link pull-right">返回</a>
-                    </if>
-                </header>
+                    </header>
+                </if>
                 <div class="panel-body">
                     <table class="table table-bordered text-center">
                         <tr>
-                            <td><input type="checkbox" class="fullClick"></td>
-                            <td>ID</td>
                             <td>名称</td>
                             <td>链接</td>
                             <td>描述</td>
@@ -27,14 +26,6 @@
                             <volist name="data" id="info">
                                 <tr>
                                     <td>
-                                        <if condition="$info.is_last eq 0">
-                                            <input type="checkbox" name="id" disabled="disabled" value="{$info.id}">
-                                            <else />
-                                            <input type="checkbox" name="id" class="lastmenu" value="{$info.id}">
-                                        </if>
-                                    </td>
-                                    <td>{$info.id}</td>
-                                    <td>
                                         <if condition="$info.is_last eq 0"><a href="{:U('index', array('pid' => $info['id']))}" class="switchClick">{$info.name}</a>
                                             <else />{$info.name}</if>
                                     </td>
@@ -42,21 +33,24 @@
                                     <td>{$info.description}</td>
                                     <td>{$info.sort}</td>
                                     <td>
-                                        <if condition="$info.is_hide eq 1"> 是
-                                            <else /> 否
-                                        </if>
+                                        <a href="javascript:;" class="text-primary ajax-get" target-url="{:U('edit', array('model' => 'hide', 'id'=> $info['id'], 'version' => $info['version']))}">
+                                            <if condition="$info.is_hide eq 1"> 是
+                                                <else /> 否
+                                            </if>
+                                        </a>
                                     </td>
                                     <td>
-                                        <if condition="$info.status eq 1"> 正常
-                                            <else /> 禁止
-                                        </if>
+                                        <a href="javascript:;" class="text-primary ajax-get" target-url="{:U('edit', array('model' => 'status', 'id' => $info['id'], 'version' => $info['version']))}">
+                                            <if condition="$info.status eq 1"> 正常
+                                                <else /> 禁止
+                                            </if>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="{:U('edit',array('id'=>$info['id']))}" class="text-primary">编辑</a>
+                                        <a href="{:U('edit',array('model' => 'info', 'id' => $info['id']))}" class="text-primary">编辑</a>
                                         <if condition="$info['pid'] neq 0">
-                                            <a href="javascript:;" class="text-primary">删除</a>
+                                            <a href="javascript:;" class="text-primary ajax-get" target-url="{:U('edit', array('model' => 'delete', 'id' => $info['id'], 'version' => $info['version']))}">删除</a>
                                         </if>
-                                        <a href="javascript:;" class="text-primary">隐藏</a>
                                     </td>
                                 </tr>
                             </volist>
@@ -71,22 +65,18 @@
 <block name="script">
     <script type="text/javascript">
         $(function(){
-            $(document).on('click', '.fullClick', function () {
-                $('.lastmenu').prop('checked', $(this).prop('checked'));
-            });
-
-            $(document).on('click','.deleteClick',function(){
+            $(document).on('click','.ajax-get',function(){
+                var e = this;
                 $(e).attr('disabled', true);
                 $.ajax({
-                    type: 'post',
-                    data: { id: $(e).parent().find('[name=id]').val(), version: $(e).parent().find('[name=version]').val() },
-                    url: "{:U('deleteInfoById')}",
+                    type: 'get',
+                    url: $(e).attr('target-url'),
                     cache: false,
                     success: function (data) {
                         $(e).attr('disabled', false);
                         alert(data.info);
                         if (data.status) {
-                            that.renderTable();
+                            window.location.href = window.location.href;
                         }
                     },
                     error: function () {
